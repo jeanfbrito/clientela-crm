@@ -6,7 +6,7 @@ Clientela is full-featured CRM web application written in Ruby on Rails. It runs
 
 ### Bug reports
 
-If you discover a problem with Clientela, we would like to know about it. Submit it on the issue tracker: https://github.com/Helabs/clientela/issues
+If you discover a problem with Clientela, we would like to know about it. Submit it on the issue tracker: https://github.com/Helabs/clientela-crm/issues
 
 If you found a security bug, do *NOT* use the GitHub issue tracker. Send an email to the maintainers listed at the bottom of the README.
 
@@ -20,7 +20,7 @@ If you found a security bug, do *NOT* use the GitHub issue tracker. Send an emai
 
 We have a not yet so long list of valued contributors. Check them all at:
 
-https://github.com/Helabs/clientela/contributors
+https://github.com/Helabs/clientela-crm/contributors
 
 ### Maintainers
 
