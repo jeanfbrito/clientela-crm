@@ -1,0 +1,27 @@
+Olá <%= @task.assigned_to.name %>,
+
+A tarefa "<%= @task.content %>" foi enviada por <%= @sender_user.name %>. O prazo para terminar esta tarefa termina em <%= distance_of_time_in_words_to_now(@task.due_at) %>.
+<%- unless @task.taskable_id.blank? -%>
+
+<%- case @task.taskable.class.name -%>
+<%- when "Contact" -%>
+O contato associado a essa tarefa é <%= @task.taskable.name %>: <%= polymorphic_url(@task.taskable) %>
+<%- when "Company" -%>
+A empresa associada a essa tarefa é <%= @task.taskable.name %>: <%= polymorphic_url(@task.taskable) %>
+<%- when "Deal" -%>
+A oportunidade associada a essa tarefa é "<%= @task.taskable.name %>": <%= polymorphic_url(@task.taskable) %>
+<%- when "Fact" -%>
+A ocorrência associada a essa tarefa é "<%= @task.taskable.name %>": <%= polymorphic_url(@task.taskable) %>
+<%- end -%>
+
+<%- if @task.taskable.respond_to?(:emails) && !@task.taskable.emails.blank? -%>
+E-mail: <%= @task.taskable.emails.first.address %>
+<%- end -%>
+<%- if @task.taskable.respond_to?(:phones) && !@task.taskable.phones.blank? -%>
+Telefone: <%= @task.taskable.phones.first.number %>
+<%- end -%>
+<%- end -%>
+
+Veja todas as suas tarefas em: <%= tasks_url %>
+
+<%= render :partial => 'footer' %>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Clientela</title>
+    <link href='/favicon.ico' rel='shortcut icon'>
+    <% color = "green" %>
+    <%= stylesheet_link_tag :application, color, :cache => "#{color}-concat" %>
+    <%= javascript_include_tag :defaults, :cache => true %>
+    <%= csrf_meta_tag %>
+
+    <!--[if lt IE 9]>
+      <script src='http://html5shim.googlecode.com/svn/trunk/html5.js'></script>
+    <![endif]-->
+
+    <!--[if lte IE 7]>
+      <%= stylesheet_link_tag "iefix" %>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="row" id="header">
+      <div class="col-fixed-left">
+        <h1><%= link_to current_account.name, root_url %></h1>
+      </div>
+
+      <div class="col-middle">
+        <div class="col-fixed-right col25">
+          <div class="menu">
+            <%= t(".hello", :name => current_user.name).html_safe %>
+            <br/>
+            <%= link_to t(".users"), users_url %>
+            |
+            <%- if current_user.admin? -%>
+              <%= link_to t(".groups"), groups_url %>
+              |
+            <%- end -%>
+            <%= link_to t(".profile"), edit_user_url(current_user) %>
+            |
+            <%= link_to t(".logout"), destroy_user_session_url %>
+          </div>
+        </div>
+        <div class="col-middle">
+          <%= render :partial => "searches/form" %>
+        </div>
+      </div>
+    </div>
+    <div class="row" id="wrapper">
+      <div class="col-fixed-left" id="left-sidebar">
+        <div class="menu">
+          <ul>
+            <%= simple_menu_item(root_url, t(".dashboard"), :class => :dashboard) %>
+            <%= menu_item_with_plus(:deals, :class => :deals) %>
+            <%= content_tag :li, :class => menu_item_current_css_class(tasks_url, :class => "tasks") do %>
+              <%- [render(:partial => "tasks/new"), link_to(t(".tasks"), tasks_url)].join(" ").html_safe -%>
+            <%- end -%>
+            <%- [:contacts, :facts].each do |item| -%>
+              <%= menu_item_with_plus(item, :class => item) %>
+            <%- end -%>
+            <!--li class="companies"><a title="Adicionar nova empresa" class="button add-new" href="http://localhost:3000/companies/new"><span>Adicionar</span></a> <a href="http://localhost:3000/companies">Empresas</a></li-->
+            <%= menu_item(:reports, :class => :reports) %>
+          </ul>
+        </div>
+        <div class="favorites">
+          <hr>
+          <h2><%= t(".favorites") %></h2>
+          <ul>
+            <%- Menu.all.each do |menu| -%>
+              <%= simple_menu_item(menu.path, menu.label) %>
+            <%- end -%>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-middle">
+        <div class="col-fixed-right col25" id="right-sidebar">
+          <%= yield :sidebar %>
+          &nbsp;
+        </div>
+        <div class="col-middle" id="main">
+          <%- if alert -%>
+          <p class="notification information">
+            <%= alert %><a href="#" class="close"><img src="/images/notification_close.png" alt="" /></a>
+          </p>
+          <%- end -%>
+
+          <%- if notice -%>
+          <p class="notification information">
+            <%= notice %><a href="#" class="close"><img src="/images/notification_close.png" alt="" /></a>
+          </p>
+          <%- end -%>
+          <%= yield %>
+          <br style="clear: both;"/>
+        </div>
+      </div>
+    </div>
+    <div id="footer" class="row">
+        <div class="col">
+          <p>Clientela é um serviço de <%= link_to 'Helabs Tecnologia da Informação', 'http://helabs.com.br' %>.</p>
+          <p>
+            <%= link_to "Site", "http://clientela.com.br" %> |
+            <%= link_to 'Termos de uso', 'http://clientela.com.br/termos' %> |
+            <%= link_to 'Documentação da API', support_api_url %> |
+            <a href="#" onClick="script: Zenbox.show(); return false;"><%= t('.support') %></a>
+          </p>
+        </div>
+    </div>
+    <%= render :partial => "layouts/snap_engage" %>
+    <script type="text/javascript" src="//asset0.zendesk.com/external/zenbox/zenbox-2.0.js"></script>
+    <style type="text/css" media="screen, projection">
+      @import url(//asset0.zendesk.com/external/zenbox/zenbox-2.0.css);
+    </style>
+    <script type="text/javascript">
+      if (typeof(Zenbox) !== "undefined") {
+        Zenbox.init({
+          dropboxID:   "12026",
+          url:         "https://clientela.zendesk.com",
+          tabID:       "support",
+          tabColor:    "black",
+          tabPosition: "Left",
+          hide_tab:    true,
+          requester_email: "<%= current_user.email %>",
+          requester_name: "<%= current_user.name %>",
+          closeText: "Fechar"
+        });
+      }
+    </script>
+  </body>
+</html>

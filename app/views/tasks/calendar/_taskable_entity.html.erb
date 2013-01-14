@@ -1,0 +1,32 @@
+<h3><%= t(".header_#{taskable.class.name.underscore}") %></h3>
+
+<div class="quick-show-content">
+  <%= small_photo_tag(taskable) %>
+  <div class="contact-data">
+    <div class="contact-name"><%= link_to taskable.name, taskable %></div>
+
+    <%- if taskable.respond_to?(:company) -%>
+      <div class="contact-title-and-company"><%= render :partial => 'contacts/title_and_company', :locals => {:contact => taskable} %></div>
+    <%- end -%>
+
+    <%- if taskable.phones.any? -%>
+      <div class="contact-phone">
+        <ul>
+          <%- taskable.phones.each do |phone|  -%>
+            <li><%= phone.number %> <span><%= t("entities.phone.#{phone.kind}").downcase %></span></li>
+          <%- end -%>
+        </ul>
+      </div>
+    <%- end -%>
+
+    <%- if taskable.emails.any? -%>
+      <div class="contact-email">
+        <ul>
+          <%- taskable.emails.each do |email| -%>
+            <li><%= mail_to email.address, nil, :bcc => Clientela::Base.polymorphic_email_dropbox(taskable) %> <span><%= t("entities.email.#{email.kind}").downcase %></span></li>
+          <%- end -%>
+        </ul>
+      </div>
+    <%- end -%>
+  </div>
+</div>

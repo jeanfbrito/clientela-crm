@@ -1,0 +1,47 @@
+<%- if resource.company -%>
+<%- unless resource.company.phones.blank? && resource.company.emails.blank? && resource.company.websites.blank? && resource.company.addresses.blank?-%>
+  <%= sidebar_module_box(:header => t('.header', :company => link_to(resource.company.name, resource.company)).html_safe, :i18n => false) do %>
+    <dl class="big-definition">
+
+      <%- unless resource.company.phones.blank? -%>
+        <dt><%= t("entities.contact_data.phones") %></dt>
+        <%- resource.company.phones.each do |phone| -%>
+          <dd>
+            <%= phone.number %><span><%= t("entities.phone.#{phone.kind}").downcase %></span>
+          </dd>
+        <%- end -%>
+      <%- end -%>
+
+      <%- unless resource.company.emails.blank? -%>
+        <dt><%= t("entities.contact_data.emails") %></dt>
+        <%- resource.company.emails.each do |email| -%>
+          <dd>
+            <%= mail_to email.address, nil, :bcc => Clientela::Base.polymorphic_email_dropbox(resource) %><span><%= t("entities.email.#{email.kind}") %></span>
+          </dd>
+        <%- end -%>
+      <%- end -%>
+
+      <%- unless resource.company.websites.blank? -%>
+        <dt><%= t("entities.contact_data.websites") %></dt>
+        <%- resource.company.websites.each do |website| -%>
+          <dd>
+            <%= link_to website.url, "http://#{website.url}", :target => "_blank"%><span><%= t("entities.website.#{website.kind}") %></span>
+          </dd>
+        <%- end -%>
+      <%- end -%>
+
+      <%- unless resource.company.addresses.blank? -%>
+        <dt><%= t("entities.contact_data.addresses") %></dt>
+        <%- resource.company.addresses.each do |address| -%>
+          <dd>
+            <%= address.line1 unless address.line1.blank? %>
+            <%- unless address.line1.blank? || address.line2.blank? -%><br/><%- end -%>
+            <%= address.line2 %><span><%= t("entities.address.#{address.kind}") %></span>
+            <br/><%= link_to t("entities.contact_data.map"), address.map_link %>
+          </dd>
+        <%- end -%>
+      <%- end -%>
+    </dl>
+  <% end %>
+<%- end -%>
+<%- end -%>

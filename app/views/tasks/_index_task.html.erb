@@ -1,0 +1,10 @@
+<li id="<%= dom_id(task) %>" class="task-li">
+  <%= render :partial => 'tasks/edit_delete_panel', :locals => { :task => task } %>
+  <%= render :partial => 'tasks/complete_panel', :locals => { :task => task } %>
+  <span class="task-body">
+    <%= task_category(task) %>
+    <%= task_format(task).html_safe %>
+    <%= render :partial => 'tasks/assigned_to', :locals => { :task => task } %>
+    <%= render :partial => 'tasks/taskable_panel', :locals => { :task => task } %>
+  </span>
+</li>

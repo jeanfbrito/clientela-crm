@@ -1,0 +1,66 @@
+<%= sidebar_box do -%>
+  <%= render :partial => "tasks/sidebar_list" %>
+
+  <%= sidebar_module_box(:header => :sidebar_header_status) do -%>
+    <%= form_for(@deal, :remote => true) do |f| %>
+      <fieldset class="deal-status">
+        <%- Deal.statuses.each do |status| -%>
+          <label class="<%= status %> <%= checked(@deal, status) %>" for="deal_status_<%= status %>"><%= f.radio_button(:status, status, :class => 'submit-on-change') + " " + t(".statuses.#{status}") %></label>
+        <%- end -%>
+      </fieldset>
+    <%- end -%>
+    <br/>
+    <h2><%= t(".sidebar_header_probability") %></h2>
+    <br/>
+    <div id="probability-slider" style="margin-right: 50px;">&nbsp;</div>
+    <div id="amount" style="float: right; margin-top: -15px;">&nbsp;</div>
+    <br/>
+    <%= javascript_tag %{
+      $(function() {
+        $("#probability-slider").slider({
+          value:#{resource.probability},
+          min: 0,
+          max: 100,
+          step: 5,
+          slide: function(event, ui) {
+            $("#amount").html(ui.value + "%");
+          },
+          change: function( event, ui ) {
+            if(event.originalEvent == undefined)
+              return;
+            $.ajax({
+              type: 'PUT',
+              url: "#{deal_url(resource)}",
+              dataType: "script",
+              data: {
+                deal: {
+                  probability: ui.value
+                }
+              }
+            });
+          }
+        });
+        $("#amount").html($("#probability-slider").slider("value") + "%");
+      });
+    } %>
+  <%- end -%>
+  <%= sidebar_module_box(:header => :description) do -%>
+    <%= simple_format(@deal.description) %>
+  <%- end -%>
+  <%= render :partial => "notes/sidebar_list" %>
+  <%= render :partial => "relationships/sidebar_list" %>
+
+  <%= render_tag_list @deal.tags.grouped_by_initial %>
+  <%= render :partial => "shared/subscriptions" %>
+<%- end -%>
+
+<%= content_box do -%>
+  <%= inner_header do -%>
+    <span style="float: right; font-size: 0.9em;"><%= link_to t("common.edit"), edit_deal_url%></span>
+    <h1><%= @deal.name %></h1>
+    <%= formated_bid(@deal) %>
+  <%- end -%>
+
+  <div style="clear:both;"></div>
+  <%= render :partial => "notes/list" %>
+<%- end -%>

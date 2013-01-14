@@ -1,0 +1,31 @@
+<%= sidebar_box do -%>
+  <%= sidebar_module_box :header => 'actions' do %>
+    <%= link_to content_tag(:span, t(".add_new_deal")), new_deal_path, :class => "button" %>
+  <%- end -%>
+  <%= sidebar_module_box :header => 'filters' do %>
+    <%= link_to "Prospect", prospect_deals_url %>
+    <br/>
+    <%= link_to "Qualificação", qualify_deals_url %>
+    <br/>
+    <%= link_to "Proposta", proposal_deals_url %>
+    <br/>
+    <%= link_to "Negociação", negotiation_deals_url %>
+    <br/>
+    <%= link_to "Perdido", lost_deals_url %>
+    <br/>
+    <%= link_to "Ganho", won_deals_url %>
+  <%- end -%>
+  <%= render_tag_list Deal.tags_grouped_by_initial %>
+<%- end -%>
+
+<%= content_box do -%>
+  <% if @deals %>
+    <%= render :partial => "deals/list", :locals => { :deals => @deals, :message => action_name } %>
+  <% elsif @pendings.any? or @wons.any? or @losts.any? %>
+    <%= render :partial => "deals/list", :locals => { :deals => @pendings, :message => :pending } %>
+    <%= render :partial => "deals/list", :locals => { :deals => @wons, :message => :won } %>
+    <%= render :partial => "deals/list", :locals => { :deals => @losts, :message => :lost } %>
+  <% else %>
+    <%= render :partial => "welcome"%>
+  <% end %>
+<%- end -%>

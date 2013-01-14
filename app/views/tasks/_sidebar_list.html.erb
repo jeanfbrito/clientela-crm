@@ -1,0 +1,7 @@
+<div id="tasks-container">
+  <%- if current_tasks.any? -%>
+    <%= sidebar_module_box(:header => :header) do -%>
+      <%= render :partial => "tasks/list" %>
+    <%- end -%>
+  <%- end -%>
+</div>

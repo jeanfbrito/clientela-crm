@@ -1,0 +1,52 @@
+<form method="post" id="new_contact" enctype="multipart/form-data" class="new_contact" action="/contacts" accept-charset="UTF-8"><div style="margin: 0pt; padding: 0pt; display: inline;"><input type="hidden" value="✓" name="utf8"><input type="hidden" value="xlvQ8eYlZ53M4Rv9jyo7Xk9ahtaPhLCpshkbNHxkJt0=" name="authenticity_token"></div>
+
+  <div class="attributes ">
+    <div class="highlight"><label for="contact_name">Nome</label><input type="text" size="30" name="contact[name]" id="contact_name"></div>
+    <div class="multiple"><label for="contact_phones">Telefone</label><div id="phones-fields" class="fields-container"><div class="fields" style="display: none;">
+      <input type="text" size="30" name="contact[phones_attributes][1][number]" id="contact_phones_attributes_1_number">
+      <select name="contact[phones_attributes][1][kind]" id="contact_phones_attributes_1_kind"><option value="work">Trabalho</option>
+        <option value="home">Casa</option>
+        <option value="other">Outro</option></select>
+        <input type="hidden" value="false" name="contact[phones_attributes][1][_destroy]" id="contact_phones_attributes_1__destroy"><a class="remove_child" href="javascript:void(0)">Apagar</a>
+      </div></div><p><a data-association="phones" class="add_child" href="javascript:void(0)">Adicionar telefone</a></p><div style="display: none;" id="phones_fields_template" class="template"><div class="fields">
+        <input type="text" size="30" name="contact[phones_attributes][new_phones][number]" id="contact_phones_attributes_new_phones_number">
+        <select name="contact[phones_attributes][new_phones][kind]" id="contact_phones_attributes_new_phones_kind"><option value="work">Trabalho</option>
+          <option value="home">Casa</option>
+          <option value="mobile">Celular</option>
+          <option value="nextel">Nextel</option>
+          <option value="fax">Fax</option>
+          <option value="skype">Skype</option>
+          <option value="other">Outro</option></select>
+          <input type="hidden" value="false" name="contact[phones_attributes][new_phones][_destroy]" id="contact_phones_attributes_new_phones__destroy"><a class="remove_child" href="javascript:void(0)">Apagar</a>
+        </div></div></div>
+        <div class="multiple"><label for="contact_addresses">Endereço</label><div id="addresses-fields" class="fields-container">
+          <div class="fields" style="display: none;">
+            <textarea rows="20" name="contact[addresses_attributes][1][street]" id="contact_addresses_attributes_1_street" data-default="Endereço" cols="40" class="street"></textarea>
+            <br>
+            <input type="text" size="30" name="contact[addresses_attributes][1][city]" id="contact_addresses_attributes_1_city" data-default="Cidade" class="city">
+            <input type="text" size="30" name="contact[addresses_attributes][1][state]" id="contact_addresses_attributes_1_state" data-default="Estado" class="state">
+            <input type="text" size="30" name="contact[addresses_attributes][1][zip]" id="contact_addresses_attributes_1_zip" data-default="CEP" class="zip">
+
+            <select name="contact[addresses_attributes][1][kind]" id="contact_addresses_attributes_1_kind"><option value="work">Trabalho</option>
+              <option value="home">Pessoal</option>
+              <option value="other">Outro</option></select>
+              <input type="hidden" value="false" name="contact[addresses_attributes][1][_destroy]" id="contact_addresses_attributes_1__destroy"><a class="remove_child" href="javascript:void(0)">Apagar</a>
+            </div>
+          </div><p><a data-association="addresses" class="add_child" href="javascript:void(0)">Adicionar endereço</a></p><div style="display: none;" id="addresses_fields_template" class="template">
+          <div class="fields">
+            <textarea rows="20" name="contact[addresses_attributes][new_addresses][street]" id="contact_addresses_attributes_new_addresses_street" data-default="Endereço" cols="40" class="street"></textarea><img src="chrome://itsalltext/locale/gumdrop.png" title="It's All Text!" style="cursor: pointer ! important; display: none ! important; position: absolute ! important; padding: 0pt ! important; margin: 0pt ! important; border: medium none ! important; width: 28px ! important; height: 14px ! important; opacity: 0.0152174 ! important;">
+            <br>
+            <input type="text" size="30" name="contact[addresses_attributes][new_addresses][city]" id="contact_addresses_attributes_new_addresses_city" data-default="Cidade" class="city">
+            <input type="text" size="30" name="contact[addresses_attributes][new_addresses][state]" id="contact_addresses_attributes_new_addresses_state" data-default="Estado" class="state">
+            <input type="text" size="30" name="contact[addresses_attributes][new_addresses][zip]" id="contact_addresses_attributes_new_addresses_zip" data-default="CEP" class="zip">
+
+            <select name="contact[addresses_attributes][new_addresses][kind]" id="contact_addresses_attributes_new_addresses_kind"><option value="work">Trabalho</option>
+              <option value="home">Pessoal</option>
+              <option value="other">Outro</option></select>
+              <input type="hidden" value="false" name="contact[addresses_attributes][new_addresses][_destroy]" id="contact_addresses_attributes_new_addresses__destroy"><a class="remove_child" href="javascript:void(0)">Apagar</a>
+            </div>
+          </div></div>
+          <div><label for="contact_tag_list">Tags</label><input type="text" value="" size="30" name="contact[tag_list]" id="contact_tag_list"></div>
+          <div><img src="/images/spinner.gif?1287670031" class="spinner" alt="Spinner"><input type="submit" value="Adicionar este contato" name="commit" id="contact_submit" class="button"> ou <a href="http://localhost:3000/contacts">Cancelar</a></div>
+        </div>
+      </form>

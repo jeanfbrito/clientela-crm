@@ -1,0 +1,46 @@
+<%- sidebar_box do -%>
+  <%= sidebar_module_box :header => 'filters' do %>
+    <%= form_tag tasks_url, :method => :get do %>
+      <%= label_tag t(".by_assigned_to") %>
+      <%= select_tag :assigned_to_id, users_for_task_filter%>
+      <br/>
+      <%= submit_tag t(".filter") %>
+    <%- end -%>
+  <%- end -%>
+<%- end -%>
+
+<%= content_box do -%>
+  <%= inner_header do -%>
+    <%= render :partial => "tasks/menu", :locals => {:header => t(".header")} %>
+  <%- end -%>
+
+  <div id="tasks-container">
+    <% if Task.all.any? %>
+      <div id="tasks_list">
+
+        <%- if collection.uncompleted.pending.any? -%>
+          <h3 class="late"><%= t("tasks.list.late_tasks") %></h3>
+          <ul>
+            <%= render :partial => 'tasks/task', :collection => collection.uncompleted.pending, :as => :task %>
+          </ul>
+        <%- end -%>
+
+        <%- if collection.uncompleted.today.any? -%>
+          <h3><%= t("tasks.list.today_tasks") %></h3>
+          <ul>
+            <%= render :partial => 'tasks/task', :collection => collection.uncompleted.today, :as => :task %>
+          </ul>
+        <%- end -%>
+
+        <%- if collection.uncompleted.future.any? -%>
+          <h3><%= t("tasks.list.future_tasks") %></h3>
+          <ul>
+            <%= render :partial => 'tasks/task', :collection => collection.uncompleted.future, :as => :task %>
+          </ul>
+        <%- end -%>
+      </div>
+    <% else %>
+      <%= render :partial => "welcome"%>
+    <% end %>
+  </div>
+<%- end -%>

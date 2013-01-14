@@ -1,0 +1,7 @@
+<div class="search">
+  <%= form_tag search_url, :method => :get do %>
+    <%= text_field_tag :q, nil, :id => 'inline-search-input', :placeholder => t(".message"), "autocomplete" => "off" %>
+    <%#= image_tag("spinner.gif", :class => "spinner") %>
+    <%#= submit_tag t(".search"), :class => "button" %>
+  <%- end -%>
+</div>

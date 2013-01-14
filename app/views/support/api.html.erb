@@ -1,0 +1,270 @@
+<style>
+  p {
+    margin: 10px 0;
+  }
+  
+  ul {
+    margin: 10px 30px;
+    list-style: disc;
+  }
+  
+  h2 {
+    font-size: 1.5em;
+  }
+  
+  code {
+    background-color: #111111;
+    color: #33FF00;
+    font-family: monospace;
+    font-size: 1em;
+    margin: 10px 0;
+    padding: 10px;
+    display: block;
+  }
+  
+  pre {
+    display: block;
+    margin: 10px 0;
+  }
+</style>
+<%= content_box do -%>
+<%= RDiscount.new(<<-eos
+## Introdução
+
+Com a API é possível integrar outros sistemas com o Clientela, seja ele uma loja virtual, um sistema de ERP como Oracle, SAP, Microsiga, sistemas web ou com dispositivos móveis. É uma ferramenta realmente poderosa.
+
+## Não é um programador?
+
+A API é para nerds. Se você não é um programador, e não tem nenhum na sua empresa, entre em contato conosco... é possível que possamos ajudá-lo.
+
+## Uso Geral
+
+A API é baseada nos princípios [RESTful][rest] e usa conexão HTTP com todos os seus verbos (GET/POST/PUT/DELETE). A API deve ser acessada através das mesmas URLs e verbos HTTP da interface HTML normal, adicionando-se o formato desejado (.xml ou .json) ao final da URL nos casos de operações em GET e DELETE e passando o header Content-type (application/xml ou application/json) no caso de operações em POST ou PUT.
+
+## Convenções da API
+
+Na documentação da API, utilizamos as seguintes convenções:
+
+  * {variable} - Indica o nome de uma variável que precisa ser substituída por valores da sua conta.
+  * ... - Indica o conteúdo da resposta de uma requisição, que foi truncado para facilitar a leitura da documentação.
+  * $TOKEN - Indica o token de autenticação e está neste formato para facilitar os testes na linha de comando.
+  * $DOMAIN - Indica o domínio da sua conta e está neste formato para facilitar os testes na linha de comando.
+
+Supondo que o seu token é "eAmkzibvomDHy3xyIySSQC" e seu domínio é "minhaempresa", você pode rodar os comandos abaixo e posteriormente copiar e colar os comandos desta documentação no terminal.
+  
+    export TOKEN=eAmkzibvomDHy3xyIySSQC
+    export DOMAIN=minhaempresa
+
+## Códigos de Retorno
+
+A API retorna o os códigos de resposta HTTP. Estas são as informações mais relevantes:
+
+  * 200 OK - A chamada foi bem sucedida.
+  * 400 Bad Request - A requisição é inválida, em geral conteúdo mal formado.
+  * 401 Unauthorized - O Token de Autenticação é inválido.
+  * 403 Forbidden - O plano contratado não permite acesso à API.
+  * 404 Not Found - O endereço acessado não existe.
+  * 503 Service Unavailable - A conta atingiu algum dos limites de uso.
+  * 500 Internal Server Error - Houve um erro interno do servidor ao processar a requisição.
+
+## Limitações
+
+O servidor retorna o status HTTP 503 nas seguintes situações:
+
+  * O cliente envia mais de 15 requisições por minuto.
+  * O cliente envia mais de 500 requisições por hora.
+  * O cliente enviar mais de uma requisição de uma só vez.
+
+## Autenticação
+
+Todo acesso à API é feito do ponto de vista de um usuário. Assim sendo, toda requisição à API deverá ser autenticada. A autenticação é feita via HTTP Basic Authentication, porém ao invés de passar o login e senha do usuário, deve-se fornecer o **token de autenticação** do usuário no campo _login_ e nada no campo _password_.
+  
+Alguns clientes HTTP podem reclamar do fato do campo _password_ estar vazio, nesse caso pode-se informar ‘X’ como senha, que o sistema irá ignorar. O **token de autenticação** pode ser obtido no link [**Perfil**][profile] de sua conta.
+
+Exemplo de chamada API autenticada:
+
+    $ curl -i -u $TOKEN:X -X GET https://$DOMAIN.clientela.com.br/contacts.xml
+
+    HTTP/1.1 200 OK
+    Content-Type: application/xml; charset=utf-8
+    Date: Tue, 01 Mar 2011 19:26:52 GMT
+    ...
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <contacts type="array">
+      <contact>
+        <id type="integer">389</id>
+        <name>aaaaa</name>
+        ...
+    </contacts>
+
+Já a mesma solicitação sem os parâmetros de autenticação (ou com valores errados), resultaria em:
+
+    $ curl -i -u token-invalido:X -X GET https://$DOMAIN.clientela.com.br/contacts.xml
+
+    HTTP/1.1 401 Unauthorized 
+    Content-Type: application/xml; charset=utf-8
+    WWW-Authenticate: Basic realm="Application"
+    Date: Tue, 01 Mar 2011 19:30:07 GMT
+    ...
+    
+    <?xml version="1.0" encoding="UTF-8"?>
+    <hash>
+      <error>Email ou senha inválidos.</error>
+    </hash>
+
+## Recursos
+
+A API fornece acesso aos seguintes recursos do sistema: contatos, empresas, tarefas, ocorrências, oportunidades e histórico. Abaixo veja o que cada recurso dispõe.
+
+### Contatos
+
+Possui as seguintes ações: Listar, Exibir, Criar, Atualizar e Apagar.
+
+#### Listar
+
+Retorna lista paginada de todos os contatos.
+
+**GET /contacts.{format}?page={page}**
+
+    $ curl -i -u $TOKEN:X -X GET https://$DOMAIN.clientela.com.br/contacts.xml?page=1
+
+    HTTP/1.1 200 OK 
+    Content-Type: application/xml; charset=utf-8
+    Date: Tue, 01 Mar 2011 20:20:29 GMT
+    ...
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <contacts type="array">
+      <contact>
+        <id type="integer">389</id>
+        <name>Contact a</name>
+        ...
+      </contact>
+      <contact>
+        <id type="integer">391</id>
+        <name>Contact b</name>
+        ...
+      </contact>
+    </contacts>
+
+#### Exibir
+
+Exibe todos os atributos de um contato.
+
+**GET /contacts/{id}.{format}**
+
+    $ curl -i -u $TOKEN:X -X GET https://$DOMAIN.clientela.com.br/contacts/389.xml
+
+    HTTP/1.1 200 OK 
+    Content-Type: application/xml; charset=utf-8
+    Date: Tue, 01 Mar 2011 20:38:24 GMT
+    ...
+    
+    <?xml version="1.0" encoding="UTF-8"?>
+    <contact>
+      <id type="integer">389</id>
+      <name>Contato abc</name>
+      <created-at type="datetime">2011-02-23T18:59:28-03:00</created-at>
+      <photo-file-size type="integer" nil="true"></photo-file-size>
+      <title></title>
+      <notes type="array">
+        <note>
+          <created-at type="datetime">2011-02-28T18:11:00-03:00</created-at>
+          <updated-at type="datetime">2011-02-28T18:11:50-03:00</updated-at>
+          <notable-id type="integer">389</notable-id>
+          <id type="integer">3</id>
+          <content>Teste!</content>
+          <notable-type>Contact</notable-type>
+          <author-id type="integer">6</author-id>
+        </note>
+      </notes>
+      <photo-file-name nil="true"></photo-file-name>
+      <updated-at type="datetime">2011-02-23T18:59:28-03:00</updated-at>
+      <photo-content-type nil="true"></photo-content-type>
+      <photo-updated-at type="datetime" nil="true"></photo-updated-at>
+      <company-id type="integer" nil="true"></company-id>
+      <imported-by-id type="integer" nil="true"></imported-by-id>
+    </contact>
+
+#### Criar
+
+Criar um contato.
+
+**POST /contacts.{format}**
+
+    $ curl -i -u $TOKEN:X -X POST https://$DOMAIN.clientela.com.br/contacts.xml -d '<contact><name>Novo Contato</name></contact>' -H 'Content-type: application/xml'
+
+    HTTP/1.1 201 Created 
+    Content-Type: application/xml; charset=utf-8
+    Date: Tue, 01 Mar 2011 20:51:47 GMT
+    ...
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <contact>
+      <name>Novo Contato</name>
+      <created-at type="datetime">2011-03-01T17:51:47-03:00</created-at>
+      <photo-file-size type="integer" nil="true"></photo-file-size>
+      <title nil="true"></title>
+      <notes type="array"/>
+      <photo-file-name nil="true"></photo-file-name>
+      <updated-at type="datetime">2011-03-01T17:51:47-03:00</updated-at>
+      <photo-content-type nil="true"></photo-content-type>
+      <id type="integer">390</id>
+      <photo-updated-at type="datetime" nil="true"></photo-updated-at>
+      <company-id type="integer" nil="true"></company-id>
+      <imported-by-id type="integer" nil="true"></imported-by-id>
+    </contact>
+
+#### Atualizar
+
+Atualizar um contato.
+
+**PUT /contacts/{id}.{format}**
+
+    $ curl -i -u $TOKEN:X -X PUT https://$DOMAIN.clientela.com.br/contacts/390.xml -d '<contact><name>Trocando Nome do Contato</name></contact>' -H 'Content-type: application/xml'
+
+    HTTP/1.1 200 OK 
+    Content-Type: application/xml; charset=utf-8
+    Date: Tue, 01 Mar 2011 20:59:29 GMT
+    ...
+
+#### Apagar
+
+Apagar um contato.
+
+**DELETE /contacts/{id}.{format}**
+
+    $ curl -i -u $TOKEN:X -X DELETE https://$DOMAIN.clientela.com.br/contacts/390.xml
+
+    HTTP/1.1 200 OK 
+    Content-Type: application/xml; charset=utf-8
+    Date: Tue, 01 Mar 2011 21:02:15 GMT
+    ...
+
+### Empresas
+
+Possui as seguintes ações: Exibir, e Atualizar.
+
+### Tarefas
+
+Possui as seguintes ações: Listar, Criar, Atualizar e Apagar.
+
+### Ocorrências
+
+Possui as seguintes ações: Listar, Exibir, Criar, Atualizar e Apagar.
+
+### Oportunidades
+
+Possui as seguintes ações: Listar, Exibir, Criar, Atualizar e Apagar.
+
+### Histórico
+
+Possui as seguintes ações: Criar, Atualizar e Apagar.
+
+[rest]: https://en.wikipedia.org/wiki/Representational_State_Transfer#RESTful_web_services
+[profile]: #{edit_user_url(current_user)}
+
+eos
+).to_html.html_safe %>
+<%- end -%>

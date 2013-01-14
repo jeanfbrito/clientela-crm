@@ -1,0 +1,11 @@
+<%- unless resource.new_record? -%>
+<div class="attribute" id="avatar">
+  <div class="label">
+    <%= image_tag resource.small_avatar %>
+  </div>
+  <div class="field">
+    <%= link_to "Alterar foto", '#' %>
+  </div>
+  <br style="clear: both;">
+</div>
+<%- end -%>

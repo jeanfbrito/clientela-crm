@@ -1,0 +1,15 @@
+<li id="<%= dom_id(task) %>" class="task-li">
+  <%= render :partial => 'tasks/calendar/task_info', :locals => { :task => task } %>
+  <%= render :partial => 'tasks/complete_panel', :locals => { :task => task } %>
+  <span class="task-body">
+    <%= task_category(task) %>
+
+    <%- if task.frame? -%>
+      <strong><%= format_task_time(task) %></strong> &ndash; <%= task.content %>
+    <%- else -%>
+      <%= task.content %>
+    <%- end -%>
+    <br/>
+    <strong><%= render :partial => 'tasks/assigned_to', :locals => { :task => task } %></strong>
+  </span>
+</li>

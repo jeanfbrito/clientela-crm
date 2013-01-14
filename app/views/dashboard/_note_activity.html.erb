@@ -1,0 +1,7 @@
+<dt class='note'><%= t(".note") %></dt>
+<dd>
+  <span class="date"><%= l(activity.created_at, :format => :activity) %></span>
+  <span class="refrecord"><%= link_to activity.parent_name, send(*activity.params_for_parent_url) %></span>
+  <span class="body <%= activity.action %>"><%= truncate(activity.record_content) %></span>
+  <span class="posted-by"><%= t(".#{activity.action}", :author => activity.author_name) %></span>
+</dd>

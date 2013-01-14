@@ -1,0 +1,6 @@
+Kind,Name,First name,Last name,Company,Title,Background,Tags,Address - Work Street,Address - Work City,Address - Work State,Address - Work Zip,Address - Work Country,Address - Home Street,Address - Home City,Address - Home State,Address - Home Zip,Address - Home Country,Address - Other Street,Address - Other City,Address - Other State,Address - Other Zip,Address - Other Country,Phone number - Work,Phone number - Mobile,Phone number - Fax,Phone number - Pager,Phone number - Home,Phone number - Skype,Phone number - Other,Email address - Work,Email address - Home,Email address - Other,Web address - Work,Web address - Personal,Web address - Other,Twitter account - Personal,Twitter account - Business,Twitter account - Other,Instant messenger kind - Work,Instant messenger - Work,Instant messenger kind - Personal,Instant messenger - Personal,Instant messenger kind - Other,Instant messenger - Other,Customer ID,Referred By
+Person,"Quentin ""Quibe"" Tarantino",Quentin,"""Quíííbe"" Tarantino",Caju Security,Diretor Administrativo,"","","","","","","","","","","","","","","","","","","(12) 1122-1122, (12) 1122-1122","","","","","",quentin@example.com,"","","","","","","","","","","","","","",,
+
+
+
+Person,,,,,,"","","","","","","","","","","","","","","","","","","","","","","","",,"","","","","","","","","","","","","","",,

@@ -1,0 +1,63 @@
+<%= sidebar_module_box(:header => :header) do -%>
+  <%- if resource.relationships.any? -%>
+    <ul class="relatioship-list">
+    <%- resource.relationships.each do |relationship| -%>
+      <%- contact = relationship.contact -%>
+      <li>
+        <%= thumb_photo_tag(contact) %>
+        <div class="contact-data">
+          <div class="contact-name">
+            <%= link_to contact.name, contact %>
+            <%= link_to_icon_destroy(relationship) %>
+          </div>
+          <div class="contact-title-and-company"><%= render :partial => 'contacts/title_and_company', :locals => {:contact => contact} %></div>
+          <%- unless contact.emails.blank? -%>
+            <div class="contact-email"><%= contact.emails.first.address %></div>
+          <%- end -%>
+
+          <div class="contact-email">
+          <%- contact.phones.each do |phone| -%>
+            <%= phone.number %>
+          <%- end -%>
+          </div>
+          
+          <div class="contact-tags">
+            <% contact.tags.each do |tag| %>
+              <%= link_to tag.name, tag_url(tag) %>
+            <% end %>
+          </div>
+        </div>
+      </li>
+    <%- end -%>
+    </ul>
+
+    <br style="clear: both"/>
+    <%= link_to t('.add_relationship'), '#', :onclick => "$(this).hide(); $('#new_relationship').show(); return false;" %>
+  <%- else -%>
+    <p><%= t('.no_relationship') %> <%= link_to t('.create_relationship'), '#', :onclick => "$(this).closest('p').hide(); $('#new_relationship').show(); return false;" %></p>
+  <%- end -%>
+
+  <%= form_for Relationship.new(:entity => resource), :html => {:style => "display: none;"} do |f| %>
+    <%= f.hidden_field :entity_id %>
+    <%= f.hidden_field :entity_type %>
+    <%= f.hidden_field :contact_id %>
+    <%= f.autocomplete_field(:contact_name, autocomplete_contact_name_contacts_path, :autocomplete => "off", :id_element => '#relationship_contact_id', :value => t(".relationship_search_by_name")) %>
+    <%= spinner_submit(f) %>
+  <% end %>
+  <br style="clear: both"/>
+<%- end -%>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("form#new_relationship").submit(function() {
+      if ($("#relationship_contact_id").val() == "") {
+        alert("<%= t(".select_contact") %>");
+        $(".spinner").hide();
+        $("#relationship_submit").show();
+        return false;
+      } else {
+        return true;
+      }
+    });
+  });
+</script>

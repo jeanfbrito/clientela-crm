@@ -1,0 +1,37 @@
+<%= sidebar_box do -%>
+  <%= sidebar_module_box(:header => "status") do -%>
+    <%- if @fact.closed_at? -%>
+      <%= t(".closed_message") %> <%= link_to t(".closed_link"), fact_url(:fact => {:closed_at => nil}), :method => :put %>
+    <%- else -%>
+      <%= t(".opened_message") %> <%= link_to t(".opened_link"), fact_url(:fact => {:closed_at => DateTime.now}), :method => :put %>
+    <%- end -%>
+  <%- end -%>
+
+  <%= render :partial => "tasks/sidebar_list" %>
+  <%= render :partial => "relationships/sidebar_list" %>
+
+  <%- @fact.special_fields.each do |key, value| -%>
+    <%= sidebar_module_box(:header => key, :i18n => false) do -%>
+      <%= simple_format(value) %>
+    <%- end -%>
+  <%- end -%>
+
+  <%- unless @fact.only_description.blank? -%>
+    <%= sidebar_module_box(:header => :description) do -%>
+      <%= simple_format(@fact.only_description) %>
+    <%- end -%>
+  <%- end -%>
+  <%= render :partial => "notes/sidebar_list" %>
+  
+  <%= render_tag_list @fact.tags.grouped_by_initial %>
+  <%= render :partial => "shared/subscriptions" %>
+<%- end -%>
+
+<%= content_box do -%>
+  <%= inner_header do -%>
+    <h1 style="display: inline;"><%= @fact.name %></h1>
+    <span style="float: right; font-size: 0.9em;"><%= link_to(t("common.edit"), edit_fact_url) %></span>
+  <%- end -%>
+
+  <%= render :partial => "notes/list" %>
+<%- end -%>

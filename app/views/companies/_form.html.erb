@@ -1,0 +1,30 @@
+<%- with_avatar = (resource.new_record? ? "" : "with-avatar") -%>
+
+<%= form_for resource, :builder => Clientela::FormBuilder, :html => { :multipart => true } do |f| %>
+  <%= hidden_field_tag :referer, request.referer %>
+
+  <div class="attributes <%= with_avatar %>">
+  
+    <%= render :partial => "entities/avatar", :locals => {:resource=>resource} -%>
+
+    <%= f.text_field_with_label :name, :wrapper_class => "highlight" %>
+    <%= nested_attribute(f, :phones) %>
+    <%= nested_attribute(f, :emails) %>
+    <%= nested_attribute(f, :websites) %>
+    <%= nested_attribute(f, :addresses) %>    
+    <%= f.text_field_with_label :tag_list %>
+    
+    <div class="sample-tags">
+      <%- most_used_tags.each do |tag| -%>
+        <span><%= tag %></span>
+      <%- end -%>
+      <p><%= t("entities.form.sample_tags_html")%></p>
+    </div>
+    
+    <%= spinner_submit_with_cancel(f) %>
+  </div>
+<%- end -%>
+
+<script type="text/javascript">
+  <%= %{var tags = [#{ActsAsTaggableOn::Tag.all.map { |t| %{["#{t}","#{t}"]} }.join(',')}];}.html_safe %>
+</script>

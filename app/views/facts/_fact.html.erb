@@ -1,0 +1,9 @@
+<li>
+  <%= small_thumb_tag('iconika-grey-icons/48x48/comment.png') %>
+  <div class="fact-data">
+    <div class="fact-name"><%= link_to fact.name, fact %></div>
+    <div class="fact-last-update">
+      <%= t(".last_update", :distance => distance_of_time_in_words_to_now(fact.updated_at)) %>
+    </div>
+  </div>
+</li>

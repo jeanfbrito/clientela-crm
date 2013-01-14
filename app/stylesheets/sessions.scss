@@ -1,0 +1,128 @@
+@import "compass/css3/border-radius";
+
+@import "reset";
+@import "960";
+@import "color";
+
+body {
+  font: 12px/1.5 "Lucida Grande", Verdana, Arial, Helvetica, Sans-serif;
+}
+
+.spinner {
+  display: none;
+}
+
+p.notification{
+  display:block;
+  padding:7px 7px 7px 30px;
+  margin: 5px 0;
+  -webkit-border-radius:3px;
+  -moz-border-radius:3px;
+  position:relative;
+  border:1px solid;
+
+  &.information {
+    background: #dbe3ff url('/images/icons/information.png') 7px 8px no-repeat;
+    border-color: #a2b4ee !important;
+    color: #585b66;
+  }
+
+  &.error {
+    background: #ffcece url('/images/icons/exclamation.png') 7px 8px no-repeat;
+    border-color: #df8f8f !important;
+    color: #665252;
+  }
+}
+
+div#login_container {
+  width: 450px;
+  margin: auto;
+  margin-top: 10%;
+
+  div#login{
+    border:1px solid #c4c4c4;
+    color:#444444;
+    margin-bottom:10px;
+    -webkit-border-radius:2px;
+    -moz-border-radius:2px;
+
+    div#login_header{
+      border-bottom:1px solid #c4c4c4;
+      height:50px;
+      line-height:50px;
+      background:#FFFFFF url(/images/login_bg.png) repeat-x bottom left;
+
+      h2{
+        font-size: 23px;
+        margin:0px 20px;
+      }
+    }
+
+    div#login_content{
+      padding:20px;
+      background:#FFFFFF;
+
+      form {
+        hr{
+          border: 0 #ccc solid;
+          border-top-width: 1px;
+          margin: 20px 0;
+        }
+
+        label {
+          display: block;
+          font-weight: bold;
+        }
+
+        input[type=text], input[type=password] {
+          padding: 5px;
+          width: 98%;
+        }
+
+        div.field_with_errors {
+          input {
+            background: url('/images/icons/exclamation.png') 5px 5px no-repeat !important;
+            border-color: #df8f8f !important;
+            padding-left: 25px !important;
+            width: 93% !important;
+          }
+        }
+
+        div.error {
+          font-size: 0.9em;
+          text-align: right;
+          margin-top: 3px;
+          width: 94%;
+          padding: 1px 10px;
+          background: #FFCECE;
+          color: #665252;
+          -moz-border-radius:6px 6px 6px 6px;
+          -webkit-border-radius:6px 6px 6px 6px;
+        }
+
+        p{
+          margin-top: 10px;
+
+          &.checkbox {
+            label {
+              display: inline;
+            }
+          }
+
+          &.domain-complement {
+            text-align: right;
+            margin: -20px 5px 8px 0;
+            font-size: 0.8em;
+            color: #999999;
+          }
+
+          &.hint {
+            margin: 5px 0px;
+            font-size: 0.8em;
+            color: #999999;
+          }
+        }
+      }
+    }
+  }
+}

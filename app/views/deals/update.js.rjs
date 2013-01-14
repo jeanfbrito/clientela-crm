@@ -1,0 +1,9 @@
+if !params[:deal][:probability]
+  page << %{
+    $(".deal-status label").removeClass('checked');
+    $(".deal-status label.#{resource.status}").addClass('checked');
+    $("#probability-slider").slider("option", "value", #{resource.probability});
+    $("#amount").html($("#probability-slider").slider("value") + "%");
+  }
+  page << %{ $.fancybox("#{escape_javascript(render 'tasks/deal_follow_up')}", { 'scrolling' : 'no' });} if resource.status == "won"
+end

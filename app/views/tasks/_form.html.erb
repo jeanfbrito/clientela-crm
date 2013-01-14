@@ -1,0 +1,44 @@
+<div id="task-form">
+  <%= form_for resource, :builder => Clientela::FormBuilder do |f| -%>
+    <%- resource.assigned_to_id = current_user.id if resource.assigned_to_id.blank? -%>
+    <%= f.hidden_field :frame, :value => true %>
+    <%- unless resource.taskable.blank? -%>
+      <%= f.hidden_field :taskable_type %><%= f.hidden_field :taskable_id %>
+    <%- end -%>
+
+    <div id="left-side">
+      <%= f.text_area_with_label :content, :class => "extensible" %>
+      <%= f.select_field_with_label :due, options_with_translation(Task.due_values) %>
+
+      <%= f.select_field_with_label :category_id, [[t(".none"), nil]].concat(TaskCategory.all.map{ |t| [t.name, t.id]}) %>
+      <%= f.select_field_with_label :assigned_to_id, users_for_assign %>
+      <%= f.select_field_with_label :notify, options_with_translation(Task.notify_values) %>
+    </div>
+
+    <div id="right-side">
+      <div id="task-datepicker">
+        <div id="task-datepicker-wrapper">
+          <div id="new_datepicker">&nbsp;</div>
+          <div class="show-date">
+            <span class="selected-date"><%= l((@task.due_at && @task.due_at.to_date) || Date.today)%></span> às
+            <%= f.time_select :due_at, :minute_step => 15 %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="clear: both;">
+      <%= spinner_submit(f) %>
+    </div>
+  <%- end -%>
+</div>
+<script type="text/javascript">
+  var task_due = <%= {
+    :today => l(Date.today, :format => :js),
+    :tomorrow => l(Date.tomorrow, :format => :js),
+    :this_week => l(Date.this_week, :format => :js),
+    :next_week => l(Date.next_week, :format => :js),
+  }.to_json.html_safe
+  %>;
+  setDatePicker();
+</script>

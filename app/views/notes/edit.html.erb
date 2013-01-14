@@ -1,0 +1,11 @@
+<%= content_box do -%>
+  <strong><%= t('.edit_note', :name => @note.notable.name) %></strong>
+  <%= form_for @note do |f| -%>
+      <%= f.text_area :content, :rows => nil, :cols => nil %>
+      <div class="note-form-basics">
+        <div class="actions">
+          <%= spinner_submit(f) %> <%= t("common.or") %> <%= link_to content_tag(:span, t(".cancel")), @note.notable %>
+        </div>
+      </div>
+  <%- end -%>
+<%- end -%>

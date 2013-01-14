@@ -1,0 +1,58 @@
+<div>
+  <strong><%= t('.add_note', :name => resource.name) %></strong>
+  <%= form_for Note.new(:notable => resource), :html => { :multipart => true } do |f| -%>
+    <%= f.hidden_field :notable_id %>
+    <%= f.hidden_field :notable_type %>
+    <%= f.text_area :content, :rows => nil, :cols => nil %>
+
+    <div class="note-form-basics">
+      <div class="actions">
+        <%= spinner_submit(f) %>
+      </div>
+      <div class="more">
+        <%= link_to t('.more_options'), '#', :class => 'note-show-more-options' %>
+      </div>
+    </div>
+
+    <div class="note-form-extras" style="display: none;">
+      <%= f.label :created_at %><br/>
+      <%= f.date_select :created_at, :start_year => 2000 %><br/>
+      <%= f.hidden_field 'created_at(4i)', :value => l(0.days.from_now, :format => :hour) %>
+      <%= f.hidden_field 'created_at(5i)', :value => l(0.days.from_now, :format => :minute) %>
+
+      <br/>
+
+      <%= f.label :attachment %><br/>
+      <%= f.file_field :attachment %><br/>
+
+      <%- if resource.is_a?(Deal) -%>
+        <br/>
+        <%= f.label :proposal %>
+        <%= f.check_box :proposal %>
+        <br/>
+      <%- end -%>
+
+      <%- if users_not_myself.any? %>
+        <br/>
+        <%= label_tag "Quem deve receber uma notificação?" %>
+        <br/>
+        <%- users_not_myself.each do |u| -%>
+          <%- subscribed = resource.subscriptions.where(:subscriber_id => u.id).any? %>
+          <%= check_box_tag "note[notifications][#{u.id}]", "1", subscribed, :disabled => subscribed %>
+          <%= label_tag "note_notifications_#{u.id}", u.name, {:style => "font-weight: normal;"} %>
+        <%- end -%>
+      <%- end -%>
+
+      <div class="actions">
+        <%= spinner_submit(f) %>
+        <%= link_to t('.less_options'), '#', :class => 'note-hide-more-options' %>
+      </div>
+    </div>
+  <%- end -%>
+</div>
+
+<%- if resource.notes.any? -%>
+  <div id="notes">
+    <%= render resource.notes %>
+  </div>
+<%- end -%>

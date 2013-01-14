@@ -1,0 +1,4 @@
+<%= render 'form' %>
+<script type="text/javascript">
+  $("#new_datepicker").datepicker("setDate", <%= l(resource.due_at.to_date, :format => :js) %>);
+</script>

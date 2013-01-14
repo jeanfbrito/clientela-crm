@@ -1,0 +1,11 @@
+<div id="login">
+  <div id="login_header">
+    <h2>Confirmação de remoção</h2>
+  </div>
+  <div id="login_content">
+    Você está prestes a remover a sua conta do Clientela. Ao realizar essa operação sua conta será automaticamente bloqueada e você não terá mais acesso aos seus dados.<br /><br />
+    Em poucos minutos todos os seus dados serão apagados de nossos servidores. Tenha conhecimento de que este é um processo irreversível e não há formas de voltar.<br /><br />
+    Deseja continuar com a remoção da sua conta?<br /><br />
+    <%= link_to content_tag(:span, "Sim, quero remover minha conta."), account_url, :method => :delete, :class => :button %><br /><br />
+  </div>
+</div>

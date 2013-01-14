@@ -1,0 +1,38 @@
+<%- sidebar_box do -%>
+  <%= sidebar_module_box :header => 'actions' do %>
+    <%- if ContactImport.count > 0-%>
+      <%= link_to content_tag(:span, t(".import_contacts_list")), contact_imports_url, :class => :button %><br/>
+    <%- end -%>
+
+    <%= link_to content_tag(:span, t(".import_contacts")), new_contact_import_url, :class => :button %><br/>
+    <%= link_to content_tag(:span, t(".add_new_contact")), new_contact_url, :class => :button %>
+  <%- end -%>
+
+  <%= sidebar_module_box :header => 'filter_by_initials' do %>
+    <div class="contact-index-initial">
+      <%= link_to t(".all"), contacts_url, :class => "initials #{params[:initial] ? "":"current"}" %>
+
+      <%- Contact.initials.each do |initial| -%>
+        <%- current = (initial == params[:initial] ? "current":"") %>
+        <%= link_to initial.upcase, contacts_url(:initial => initial), :remote => true, :class => "initials #{current}", :id => "initial_#{initial}" %>
+      <%- end -%>
+    </div>
+  <%- end -%>
+  
+  <%= render_tag_list Contact.tags_grouped_by_initial %>
+<%- end -%>
+
+<%= content_box do -%>
+  <%= inner_header do -%>
+    <h1 style="display: inline;"><%= t(".header") %></h1>
+    <%= render :partial => 'favorite_add_remove' %>
+  <%- end -%>
+
+  <%- unless Contact.count.zero? -%>
+    <div class="contact-index-list-wrapper">
+      <%= render :partial => 'index'%>
+    </div>
+  <%- else -%>
+    <%= render :partial => "welcome"%>
+  <%- end -%>
+<%- end -%>

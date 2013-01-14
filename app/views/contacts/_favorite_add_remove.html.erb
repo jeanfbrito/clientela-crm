@@ -1,0 +1,14 @@
+<%- if params[:tag_id] -%>
+  <span style="float: right; font-size: 0.9em;">
+    <%- if menu = Menu.where(:path => request.path).first -%>
+      <%= link_to t(".remove_filter"), menu_url(menu), :method => :delete %>
+    <%- else -%>
+      <%= link_to t(".add_filter"), '#', :id => "add-favorite" %></p>
+      <%= form_for Menu.new(:path => request.path, :label => @tag.name.capitalize.pluralize) do |f| %>
+        <%= f.hidden_field :path %>
+        <%= f.text_field :label %>
+        <%= spinner_submit(f) %>
+      <%- end -%>
+    <%- end -%>
+  </span>
+<%- end -%>

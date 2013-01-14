@@ -1,0 +1,7 @@
+<%- content_for :message_title do -%>
+Sentimos a sua falta. Podemos ajudar?
+<%- end -%>
+<p>Olá <%= @user.name %>,</p>
+<p>Notamos que você não acessa a sua <%= link_to "conta do Clientela", root_url, :target => "_blank"%> há algum tempo. Você está tendo problemas? Responda diretamente esse e-mail e nos diga se há algo errado.</p>
+<p>Seu feedback é importante! Nos diga o que podemos fazer para levar a você um <a href="http://clientela.com.br" target="_blank">Clientela</a> melhor a cada dia.
+<p style="font-size: 1.5em;text-align:center;"><%= link_to "Acesse o Clientela!", root_url, :target => "_blank"%></p>

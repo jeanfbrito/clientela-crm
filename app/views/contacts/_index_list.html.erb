@@ -1,0 +1,6 @@
+<div class="contact-index-list index-list">
+  <ul>
+    <%= render @contacts %>
+  </ul>
+</div>
+<%= render :partial => 'shared/pagination', :locals => { :collection => @contacts } %>

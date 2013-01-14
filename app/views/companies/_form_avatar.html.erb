@@ -1,0 +1,30 @@
+<%= form_for resource, :html => { :multipart => true, :id => dom_id(resource, :avatar_edit), :style => "display: none", :class => "avatar_edit" } do |f| %>
+  <div class="attributes">
+    <div class="attribute highlight">
+      <div class="label">
+        <%= image_tag resource.small_avatar %>
+      </div>
+      <div class="field">
+        <%= t(".change", :name => resource.name) %>
+        <%- if resource.photo.exists? -%>
+          <br/>
+          <%= link_to t(".delete"), company_url(resource, :contact => {:delete_photo => 1}), :method => :put %>
+        <%- end -%>
+      </div>
+      <br style="clear: both;"/>
+    </div>
+    <div class="attribute highlight">
+      <div class="label">
+        <%= t(".select") %>
+      </div>
+      <div class="field">
+        <%= f.file_field :photo %>
+      </div>
+    </div>
+    <div class="actions">
+      <%= spinner_submit(f) %>
+      <%= t("common.or") %>
+      <%= link_to t("common.cancel"), '#', :class => 'cancel' %>
+    </div>
+  </div>
+<%- end -%>

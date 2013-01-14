@@ -1,0 +1,18 @@
+<%- sidebar_box do -%>
+  <%- if current_user.admin? -%>
+    <%= sidebar_module_box :header => 'actions' do %>
+      <%= link_to content_tag(:span, t(".add_new_user")), new_user_invitation_url, :class => :button %>
+    <%- end -%>
+  <%- else -%>
+    <% # dont remove, it'll cause an exception' %>
+    &nbsp;
+  <%- end -%>
+<%- end -%>
+
+<%= content_box do -%>
+  <div class="users-index-list index-list">
+    <ul>
+      <%= render @users %>
+    </ul>
+  </div>
+<%- end -%>

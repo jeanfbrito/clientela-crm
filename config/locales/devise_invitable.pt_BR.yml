@@ -1,0 +1,10 @@
+pt_BR:
+  devise:
+    invitations:
+      send_instructions: 'E-mail de convite foi enviado para %{email}.'
+      invitation_token_invalid: 'Código do convite inválido!'
+      updated: 'Sua senha foi atualizada com sucesso. Você está logado.'
+      no_invitations_remaining: "No invitations remaining"
+    mailer:
+      invitation_instructions:
+        subject: '[Clientela] Convite de acesso ao Clientela!'

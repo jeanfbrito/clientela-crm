@@ -1,0 +1,9 @@
+<li>
+  <%= small_thumb_tag('iconika-grey-icons/48x48/comment.png') %>
+  <div class="fact-data">
+    <div class="fact-name"><%= link_to group.name, edit_group_url(group) %></div>
+    <div class="fact-last-update">
+      <%= group.users.map(&:name).sort.join(", ") %>
+    </div>
+  </div>
+</li>

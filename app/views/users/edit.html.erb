@@ -1,0 +1,18 @@
+<%= content_box do -%>
+  <%= render 'form' %>
+  <br/>
+  <h3><%= t(".header_token") %></h3>
+  <p><%= t('.token_message_html') %></p>
+  <br/>
+  <p>
+    <strong><%= t(".token_here") %>:</strong>
+  </p>
+  <p>
+    <%= current_user.authentication_token %>
+    <span style="float: right;">
+      <%= link_to t('.regenerate'), update_authentication_token_user_url, :method => :put %>
+    </span>
+  </p>
+  <br/>
+  <%= render :partial => 'dropbox_readme'%>
+<%- end -%>

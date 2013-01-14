@@ -1,0 +1,92 @@
+<%- sidebar_box do -%>
+  <%= sidebar_module_box(:header => :activities_header) do -%>
+    <div id="activities-container">
+      <%= render :partial => "dashboard/activities" %>
+    </div>
+  <%- end -%>
+<%- end -%>
+
+<%= content_box do -%>
+  <%- if @activities.any? -%>
+    <div id="calendar">
+      <%= link_to t(".all_tasks"), tasks_url, :id => "all-tasks" %>
+      <nav>
+        <ul>
+          <li><%= link_to t(".prev_weeks"), root_url(:date => previous_date), :id => "prev-weeks" %></li>
+          <li>De <%= l(first_week_start_day) %> a <%= l(last_week_end_day) %></li>
+          <li><%= link_to t(".next_weeks"), root_url(:date => next_date), :id => "next-weeks" %></li>
+        </ul>
+      </nav>
+
+      <table>
+        <tr>
+          <th><%= t(".monday") %></th>
+          <th><%= t(".tuesday") %></th>
+          <th><%= t(".wednesday") %></th>
+          <th><%= t(".thursday") %></th>
+          <th><%= t(".friday") %></th>
+          <th class="weekend"><%= t(".saturday") %></th>
+          <th class="weekend"><%= t(".sunday") %></th>
+        </tr>
+
+        <%- @weeks.each do |week| -%>
+          <tr>
+            <%- week.each do |date| -%>
+              <td class="<%= "current" if date.today? %> <%= "weekend" if [0,6].include?(date.wday) %>">
+                <div class="day"><%= date.day %></div>
+                <div class="day-content">
+                  <ul>
+                    <%= render :partial => 'tasks/calendar/task', :collection => Task.due_on(date), :as => :task %>
+                  </ul>
+                </div>
+              </td>
+            <%- end -%>
+          </tr>
+        <%- end -%>
+        <tr id="weekend-control">
+          <td colspan="5">
+            <a href="#" class="hide-show-weekend"><%= t(".show_hide_weekend") %></a>
+          </td>
+          <td class="weekend">&nbsp;</td>
+          <td class="weekend">&nbsp;</td>
+        </tr>
+      </table>
+    </div>
+
+    <div id="deals" class="info-box">
+      <h2><span><%= t(".deals") %> (<%= current_user.deals.pending.count %>)</span></h2>
+
+      <div id="deals-container" class="container">
+        <%- if Deal.count.zero? -%>
+          <%= render :partial => "no_deals" %>
+        <%- else -%>
+          <%- if Deal.pending.any? -%>
+            <nav id="deals-open">
+              <ul>
+                <%= render :partial => "deals/pending_list", :collection => Deal.pending.first(5), :as => :deal -%>
+              </ul>
+            </nav>
+          <%- end -%>
+          <p><%= link_to t(".show_all_deals"), deals_url, :class => "see-all" %></p>
+        <%- end -%>
+      </div>
+    </div>
+
+    <div id="deal-status" class="info-box">
+      <h2><span><%= t(".deal_status") %></span></h2>
+      <div class="container">
+        <%- if Deal.pending.count.zero? -%>
+          <%= render :partial => "no_deals" %>
+        <%- else -%>
+          <div id="deal-status-chart" class="googlevisualr-chart">
+            &nbsp;
+          </div>
+          <script src='https://www.google.com/jsapi'></script>
+          <%= raw funnel_chart.to_js("deal-status-chart") %>
+        <%- end -%>
+      </div>
+    </div>
+  <% else %>
+    <%= render :partial => "welcome"%>
+  <% end %>
+<%- end -%>

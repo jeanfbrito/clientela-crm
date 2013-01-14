@@ -1,0 +1,47 @@
+<%= content_box do -%>
+  <%= inner_header do -%>
+    <h2><%= "#{t(".header")} '#{@tag}'" %></h2>
+  <%- end -%>
+  <%  unless @contacts.blank? %>
+    <h3><%= t(".contacts") %></h3>
+    <div class="index-list">
+      <ul>
+        <%= render :partial => "contacts/contact", :collection => @contacts %>
+      </ul>
+    </div>
+    <br style="clear: both;"/><br/>
+  <% end %>
+
+
+  <%  unless @deals.blank? %>
+    <h3><%= t(".deals") %></h3>
+    <div class="index-list">
+      <ul>
+        <%= render :partial => "deals/deal", :collection => @deals %>
+      </ul>
+    </div>
+    <br style="clear: both;"><br/>
+  <% end %>
+  <%  unless @companies.blank? %>
+    <h3><%= t(".companies") %></h3>
+    <div class="index-list">
+      <ul>
+      <% @companies.each do |company| %>
+        <li>
+          <div class="avatar">
+            <%= image_tag "iconika-grey-icons/48x48/home.png" %>
+          </div>
+          <div class="contact-data">
+            <div class="contact-name">
+              <%= link_to company.name, company %>
+            </div>
+            <%- unless company.emails.blank? -%>
+              <div class="contact-email"><%= company.emails.first.address %></div>
+            <%- end -%>
+          </div>
+      <% end %>
+      </ul>
+    </div>
+    <br style="clear: both;"><br/>
+    <% end %>
+<%- end -%>

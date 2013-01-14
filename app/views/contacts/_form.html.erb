@@ -1,0 +1,38 @@
+<%- with_avatar = (@contact.new_record? ? "" : "with-avatar") -%>
+
+<%
+(Group.individual.all + current_user.groups).uniq.each do |group|
+  @contact.permissions.build(:group => group) unless @contact.groups.include?(group)
+end
+%>
+
+<%= form_for @contact, :builder => Clientela::FormBuilder, :html => { :multipart => true } do |f| %>
+  <div class="attributes <%= with_avatar %>">
+
+    <%= render :partial => "entities/avatar", :locals => {:resource=>@contact} -%>
+
+    <%= f.text_field_with_label :name, :wrapper_class => "highlight" %>
+    <%= f.autocomplete_field_with_label :title, :url => autocomplete_contact_title_contacts_path %>
+    <%= f.autocomplete_field_with_label :company_name, :url => autocomplete_company_name_contacts_path %>
+    <%= nested_attribute(f, :phones) %>
+    <%= nested_attribute(f, :emails) %>
+    <%= nested_attribute(f, :websites) %>
+    <%= nested_attribute(f, :addresses) %>
+
+    <%= render "shared/permissions", :f => f, :resource => @contact %>
+
+    <%= f.text_field_with_label :tag_list %>
+    <div class="sample-tags">
+      <%- most_used_tags.each do |tag| -%>
+        <span><%= tag %></span>
+      <%- end -%>
+      <p><%= t("entities.form.sample_tags_html")%></p>
+    </div>
+
+    <%= spinner_submit_with_cancel(f) %>
+  </div>
+<%- end -%>
+
+<script type="text/javascript">
+  <%= %{var tags = [#{ActsAsTaggableOn::Tag.all.map { |t| %{["#{t}","#{t}"]} }.join(',')}];}.html_safe %>
+</script>

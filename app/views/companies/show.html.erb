@@ -1,0 +1,16 @@
+<%= sidebar_box do -%>
+  <%= render :partial => "entities/contact_data" %>
+  <%= render :partial => "contacts_sidebar" %>
+  <%= render_tag_list @company.tags.grouped_by_initial %>
+  <%= render :partial => "shared/subscriptions" %>
+  <%= render :partial => "shared/dropbox" %>
+<%- end -%>
+
+<%= content_box do -%>
+  <%= inner_header do -%>
+    <h1 style="display: inline;"><%= resource.name %></h1>
+    <span style="float: right; font-size: 0.9em;"><%= link_to content_tag(:span, t("common.edit")), edit_company_url %></span>
+  <%- end -%>
+
+  <%= render :partial => "notes/list" %>
+<%- end -%>

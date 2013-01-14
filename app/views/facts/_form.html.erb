@@ -1,0 +1,21 @@
+<%= form_for @fact, :builder => Clientela::FormBuilder do |f| %>
+  <div class="attributes">
+    <%= f.text_field_with_label :name, :wrapper_class => "highlight" %>
+
+    <%= f.text_area_with_label :description %>
+
+    <%= f.text_field_with_label :tag_list %>
+    <div class="sample-tags">
+      <%- most_used_tags.each do |tag| -%>
+        <span><%= tag %></span>
+      <%- end -%>
+      <p><%= t("entities.form.sample_tags_html")%></p>
+    </div>
+
+    <%= spinner_submit_with_cancel(f) %>
+  </div>
+<%- end -%>
+
+<script type="text/javascript">
+  <%= %{var tags = [#{ActsAsTaggableOn::Tag.all.map { |t| %{["#{t}","#{t}"]} }.join(',')}];}.html_safe %>
+</script>

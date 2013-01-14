@@ -1,0 +1,11 @@
+<%- if controller_name == "tasks" || !defined?(resource) -%>
+  <%- if task.taskable? -%>
+    <br/>
+    <%- if task.taskable.is_a?(Contact) -%>
+      <%= link_to(task.taskable.name, "#quickshow-target-#{task.id}", :class => "quick-show-link") %><%- if task.taskable.company -%>, <%= link_to(task.taskable.company.name, company_url(task.taskable.company)) %><%- end -%>
+      <%= render :partial => 'tasks/taskable_contact', :locals => { :i => task.id, :contact => task.taskable } %>
+    <%- else -%>
+      <%= link_to(task.taskable.name, task.taskable) %>
+    <%- end -%>
+  <%- end -%>
+<%- end -%>

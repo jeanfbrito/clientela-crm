@@ -1,0 +1,21 @@
+<%- if !current_user.survey['interface'] and Rails.env.production? -%>
+<p class="notification information">
+  Ajude-nos a melhorar! O que você acha dessa nova interface?
+  <a href="#" class="close"><img src="/images/notification_close.png"/></a>
+  <%= aprovo("#{current_account.name}", "#{current_user.id}") -%>
+  <%= desaprovo("#{current_account.name}", "#{current_user.id}") -%>
+</p>
+<script type='text/javascript'>
+  var mp_protocol = (('https:' == document.location.protocol) ? 'https://' : 'http://');
+  document.write(unescape('%3Cscript src="' + mp_protocol + 'api.mixpanel.com/site_media/js/api/mixpanel.js" type="text/javascript"%3E%3C/script%3E'));
+</script>
+<script type='text/javascript'>
+  try {
+    var mpmetrics = new MixpanelLib('87c0ca5c116c488263f6371d789fd8c6');
+    mpmetrics.name_tag('<%= current_user.name %> <<%= current_user.email %>>');
+  } catch(err) {
+    null_fn = function () {};
+    var mpmetrics = {  track: null_fn,  track_funnel: null_fn,  register: null_fn,  register_once: null_fn, register_funnel: null_fn };
+  }
+</script>
+<%- end -%>

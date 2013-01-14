@@ -1,0 +1,9 @@
+<%- content_for :message_title do -%>
+  Convite de acesso ao Clientela!
+<%- end -%>
+
+<p>Você foi convidado para ter acesso a conta <strong><%= Account.current.name -%></strong> no Clientela. Para terminar seu cadastro acesse o link <%= link_to "aceitar convite", accept_invitation_url(@resource, :invitation_token => @resource.invitation_token), :target => "_blank"%>!</p>
+
+<p>Se você não quiser aceitar este convite, apenas ignore este email. Seu cadastro não será finalizado até que você acesse o link e finalize o cadastro.</p>
+
+<p style="font-size: 1.5em;text-align:center;"><%= link_to "Aceitar Convite!", accept_invitation_url(@resource, :invitation_token => @resource.invitation_token), :target => "_blank"%></p>

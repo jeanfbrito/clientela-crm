@@ -1,0 +1,17 @@
+<%- unless @contact.facts.blank? -%>
+  <%= sidebar_module_box(:header => :header) do -%>
+    <table>
+      <%- @contact.facts.each do |fact| -%>
+        <tr>
+          <td style="width: 35px;">
+            <%= image_tag "folder.png", :size => "32x32" %>
+          </td>
+          <td style="vertical-align: middle;">
+            <%= link_to fact.name, fact %><br />
+            <p><%= truncate(fact.description) %></p>
+          </td>
+        </tr>
+      <%- end -%>
+    </table>
+  <%- end -%>
+<%- end -%>

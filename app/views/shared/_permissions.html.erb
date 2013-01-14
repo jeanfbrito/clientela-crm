@@ -1,0 +1,23 @@
+<div class="attribute">
+  <div class="label">
+    <%= label_tag "Quem tem permissão para ver? Eu e mais..." %>
+    &nbsp;&nbsp;
+  </div>
+  <div class="field" style="margin-left: 220px">
+    <%= f.fields_for :permissions, resource.permissions.select {|p| p.group.individual? }.sort_by { |p| p.group.name } do |fc| %>
+      <%- if fc.object.group.users.include?(current_user) -%>
+        <%= fc.hidden_field :_destroy, :value => "0" %>
+      <%- else -%>
+        <%= fc.check_box :_destroy, { :checked => fc.object.persisted? }, '0', '1' %>
+        <%= fc.label :_destroy, fc.object.group.name %>
+      <%- end -%>
+      <%= fc.hidden_field :group_id %>
+    <%- end -%>
+    &nbsp;|&nbsp;
+    <%= f.fields_for :permissions, resource.permissions.select {|p| !p.group.individual }.sort_by { |p| p.group.name } do |fc| %>
+      <%= fc.check_box :_destroy, { :checked => fc.object.persisted? }, '0', '1' %>
+      <%= fc.label :_destroy, fc.object.group.name %>
+      <%= fc.hidden_field :group_id %>
+    <%- end -%>
+  </div>
+</div>

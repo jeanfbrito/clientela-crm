@@ -1,0 +1,25 @@
+<%- sidebar_box(false) do -%>
+  <%= render :partial => 'info' %>
+
+  <%= sidebar_module_box(:header => 'revert_header') do -%>
+    <p><%= t(".revert_message") %></p>
+    <p><%= link_to t(".revert_now"), revert_contact_import_url(@contact_import), :confirm => t('common.delete_confirmation'), :method => :post %></p>
+  <%- end -%>
+<%- end -%>
+
+<%= content_box do -%>
+  <%= inner_header do -%>
+    <h1><%= t(".header", :file_name => @contact_import.file_file_name) %></h1>
+  <%- end -%>
+
+  <%- if !@contact_import.imported_at? -%>
+    <%= t(".importing") %>
+  <%- else -%>
+    <h2><%= t('.total', :size => @contact_import.imported_contacts.size) %></h2><br/>
+    <ul>
+      <% @contact_import.imported_contacts.each do |contact| %>
+        <li><%= link_to contact.name, contact %></li>
+      <%- end -%>
+    </ul>
+  <%- end -%>
+<%- end -%>

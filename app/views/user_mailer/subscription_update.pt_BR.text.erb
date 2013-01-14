@@ -1,0 +1,19 @@
+Olá <%= @user.name %>,
+
+<%- if @parent.is_a?(Contact) -%>
+O contato "<%= @parent.name %>" recebeu uma atualização:
+<%- elsif @parent.is_a?(Company) -%>
+A empresa "<%= @parent.name %>" recebeu uma atualização:
+<%- elsif @parent.is_a?(Deal) -%>
+A oportunidade "<%= @parent.name %>" recebeu uma atualização:
+<%- elsif @parent.is_a?(Fact) -%>
+A ocorrência "<%= @parent.name %>" recebeu uma atualização:
+<%- end -%>
+
+========================================
+<%= @note.content %>
+========================================
+
+Acesse em: <%= polymorphic_url(@parent) %>
+
+<%= render :partial => 'footer' %>

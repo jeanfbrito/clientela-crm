@@ -1,0 +1,32 @@
+<div style="display: none;">
+  <div class="quick-show-content" id="quickshow-target-<%= i %>">
+    <%= small_photo_tag(contact) %>
+    <div class="contact-data">
+      <div class="contact-name"><%= link_to contact.name, contact %></div>
+      <div class="contact-title-and-company"><%= render :partial => 'contacts/title_and_company', :locals => {:contact => contact} %></div>
+
+      <%- if contact.phones.any? -%>
+        <div class="contact-phone">
+          <ul>
+            <%- contact.phones.each do |phone|  -%>
+              <li><%= phone.number %> <span><%= t("entities.phone.#{phone.kind}").downcase %></span></li>
+            <%- end -%>
+          </ul>
+        </div>
+      <%- end -%>
+
+      <%- if contact.emails.any? -%>
+        <div class="contact-email">
+          <ul>
+            <%- contact.emails.each do |email| -%>
+              <li><%= mail_to email.address, nil, :bcc => Clientela::Base.polymorphic_email_dropbox(contact) %> <span><%= t("entities.email.#{email.kind}").downcase %></span></li>
+            <%- end -%>
+          </ul>
+        </div>
+      <%- end -%>
+
+      <br/><%= link_to t(".edit"), edit_contact_url(contact) %>
+      <br/><%= link_to t(".show"), contact %>
+    </div>
+  </div>
+</div>

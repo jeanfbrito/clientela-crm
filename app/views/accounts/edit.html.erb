@@ -1,0 +1,25 @@
+<%- sidebar_box do -%>
+  <%= sidebar_module_box :header => 'actions' do %>
+    <%= link_to t(".destroy_account"), "http://helabs.wufoo.com/forms/r7x3q1/def/Field104=#{current_account.domain}", :class => "fancybox-iframe" %>
+  <%- end -%>
+<%- end -%>
+
+<%= content_box do -%>
+  <%= form_for current_account, :builder => Clientela::FormBuilder do |f| %>
+    <div class="attributes">
+      <%= f.text_field_with_label :name %>
+      <%= spinner_submit_with_cancel(f) %>
+    </div>
+  <%- end -%>
+  <br/><br/>
+  <h3><%= t(".edit_task_categories") %></h3>
+  <%- TaskCategory.all.each do |tc| -%>
+    <div>
+      <span style="background: <%= "##{tc.color}" %>">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+      <%= tc.name %>
+      (<%= link_to t("common.edit"), edit_task_category_url(tc, :format => :js), :class => "fancybox-ajax" %>)
+    </div>
+  <%- end -%>
+  <br/>
+  <%= link_to t(".create_task_category"), new_task_category_url(:format => :js), :class => "fancybox-ajax" %>
+<%- end -%>

@@ -1,0 +1,5 @@
+<%- if initials? -%>
+  <%= render :partial => 'contacts/index_initials'%>
+<%- else -%>
+  <%= render :partial => 'contacts/index_no_initials'%>
+<%- end -%>

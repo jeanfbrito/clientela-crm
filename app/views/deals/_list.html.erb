@@ -1,0 +1,13 @@
+<%- if deals.any? -%>
+  <h3 class=<%= "#{message}" %>>
+    <%= t(".#{message}") %>
+    <span style="float: right; font-weight: normal;"><%= t(".total", :count => deals.size, :value => number_to_currency(deals.map(&:total_value).sum)) %></span>
+  </h3>
+
+  <div class="deals-index-list index-list">
+    <ul>
+      <%= render deals %>
+    </ul>
+  </div>
+  <br style="clear: both;"><br/>
+<%- end -%>

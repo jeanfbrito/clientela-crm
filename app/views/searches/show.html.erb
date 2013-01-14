@@ -1,0 +1,21 @@
+<%- sidebar_box do -%>
+
+<%- end -%>
+
+<%= content_box do -%>
+  <%= inner_header do -%>
+    <h1><%= t(".header", :q => params[:q]) %></h1>
+  <%- end -%>
+  <%- unless @searches.empty? -%>
+    <div class="contact-index-list-wrapper">
+      <div class="contact-index-list index-list">
+        <ul>
+          <%= render @searches %>
+        </ul>
+      </div>
+      <%= render :partial => 'shared/pagination', :locals => { :collection => @searches } %>
+    </div>
+  <%- else -%>
+    <%= t(".not_found") %>
+  <%- end -%>
+<%- end -%>

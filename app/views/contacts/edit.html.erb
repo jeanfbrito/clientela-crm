@@ -1,0 +1,26 @@
+<%= content_box do -%>
+  <%= inner_header do -%>
+    <h1 style="display: inline;"><%= t(".header") %></h1>
+    <span style="float: right; font-size: 0.9em;"><%= link_to_destroy(resource) %></span>
+  <%- end -%>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      var contact_dom_id = '<%= dom_id(@contact) %>';
+      $("div#avatar a").click(function(){
+        $("#edit_" + contact_dom_id).hide();
+        $("#avatar_edit_" + contact_dom_id).show();
+        return false;
+      });
+
+      $(".avatar_edit a.cancel").click(function(){
+        $("#edit_" + contact_dom_id).show();
+        $("#avatar_edit_" + contact_dom_id).hide();
+        return false;
+      });
+    });
+  </script>
+
+  <%= render 'form' %>
+  <%= render 'form_avatar' %>
+<%- end -%>

@@ -1,0 +1,6 @@
+<dl>
+  <%- @activities.each do |activity| -%>
+    <%= render :partial => "#{activity.activitable_type.downcase}_activity", :locals => {:activity => activity} %>
+  <%- end -%>
+</dl>
+<%= will_paginate @activities, :page_links => false, :previous_label => t("common.previous"), :next_label => t("common.next"), :renderer => WillPaginate::RemoteLinkRenderer %>

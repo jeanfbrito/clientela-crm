@@ -1,0 +1,15 @@
+<li>
+  <%= small_photo_tag(contact) %>
+  <div class="contact-data">
+    <div class="contact-name"><%= link_to contact.name, contact %></div>
+    <div class="contact-title-and-company"><%= render :partial => 'contacts/title_and_company', :locals => {:contact => contact} %></div>
+    <%- unless contact.emails.blank? -%>
+      <div class="contact-email"><%= contact.emails.first.address %></div>
+    <%- end -%>
+    <div class="contact-tags">
+      <% contact.tags.each do |tag| %>
+        <%= link_to tag.name, tag_url(tag) %>
+      <% end %>
+    </div>
+  </div>
+</li>

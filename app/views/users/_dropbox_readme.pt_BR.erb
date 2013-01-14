@@ -1,0 +1,16 @@
+<h3>E-mail da Dropbox. Como funciona a Dropbox?</h3>
+<p>
+  <strong>Encaminhe</strong> um e-mail para este endereço e o Clientela irá anexar o e-mail na página do contato ou empresa, buscando pelo e-mail do campo <strong>from</strong> do e-mail original.
+</p>
+<br/>
+<p>
+  <strong>Envie</strong> uma cópia oculta - <strong>BCC</strong> - para este endereço e ele será anexado a página de contato ou empresa do destinatário do e-mail. Caso não exista um contato com o determinado e-mail, ele será criado automaticamente.
+</p>
+<br/>
+<p>
+  Após o e-mail ser anexado ao contato ou empresa, você poderá marcar esse e-mail como sendo relativo à uma Oportunidade ou Ocorrência. <strong>Esta funcionalidade será disponibilizada em breve.</strong>
+</p>
+<br/>
+<p>
+  <strong>Seu endereço dropbox é: <%= mail_to("#{current_account.domain}-#{current_user.dropbox_token}@clientela.com.br") %></strong>
+</p>

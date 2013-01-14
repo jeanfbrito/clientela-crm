@@ -1,0 +1,9 @@
+<%= content_box do -%>
+  <%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => {:method => :post}, :builder => Clientela::FormBuilder do |f| %>
+  <div class="attributes">
+    <%= f.text_field_with_label :email %>
+
+    <%= spinner_submit_with_cancel(f) %>
+  </div>
+  <% end %>
+<%- end -%>

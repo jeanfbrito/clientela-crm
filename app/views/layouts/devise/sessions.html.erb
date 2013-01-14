@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head> 
+  <meta charset="utf-8" />
+  <title>Clientela</title> 
+  <%= stylesheet_link_tag "sessions" %>
+  <%= javascript_include_tag :defaults, :cache => true %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+  <div id="login_container">
+    <%= yield %>
+  </div>
+</body>	
+</html>

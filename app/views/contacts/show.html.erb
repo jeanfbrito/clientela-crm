@@ -1,0 +1,27 @@
+<%= sidebar_box do -%>
+  <%= render :partial => "tasks/sidebar_list" %>
+  <%= render :partial => "notes/sidebar_list" %>
+  <%= render :partial => "entities/contact_data" %>
+  <%= render :partial => "company_contact_data" %>
+  <%= render :partial => "deals" %>
+  <%= render :partial => "facts" %>
+  <%= render_tag_list @contact.tags.grouped_by_initial %>
+  <%= render :partial => "shared/subscriptions" %>
+  <%= render :partial => "shared/dropbox" %>
+<%- end -%>
+
+<%= content_box do -%>
+  <%= inner_header do -%>
+    <span style="float: right; font-size: 0.9em;"><%= link_to content_tag(:span, t("common.edit")), edit_contact_url %></span>
+
+    <div class="contact-show">
+      <%= small_photo_tag(@contact) %>
+      <div class="contact-data">
+        <div class="contact-name"><%= @contact.name %></div>
+        <div class="contact-title-and-company"><%= render :partial => 'contacts/title_and_company', :locals => {:contact => @contact} %></div>
+      </div>
+    </div>
+  <%- end -%>
+
+  <%= render :partial => "notes/list" %>
+<%- end -%>

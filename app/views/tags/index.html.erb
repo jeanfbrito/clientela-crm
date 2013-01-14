@@ -1,0 +1,28 @@
+<%= content_box do -%>
+  <% if @first_half.any? %>
+  <table id="tags-table">
+    <tr>
+      <td>
+        <% @first_half.each do |value| %>
+          <%= value.first.capitalize %>
+          <% value.last.each do |tag| %>
+            <%= link_to tag.name, tag_url(tag) %>
+          <% end %>
+          <br />
+        <% end %>
+      </td>
+      <td>
+        <% @second_half.each do |value| %>
+          <%= value.first.capitalize %>
+          <% value.last.each do |tag| %>
+            <%= link_to tag.name, tag_url(tag) %>
+          <% end %>
+          <br />
+        <% end %>
+      </td>
+    </tr>
+  </table>
+<% else %>
+  <%= render :partial => "welcome"%>
+<% end %>
+<%- end -%>

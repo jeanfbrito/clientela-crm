@@ -1,0 +1,52 @@
+<%
+(Group.individual.all + current_user.groups).uniq.each do |group|
+  @deal.permissions.build(:group => group) unless @deal.groups.include?(group)
+end
+%>
+
+<%= form_for(@deal, :builder => Clientela::FormBuilder) do |f| %>
+  <div class="attributes">
+    <%= f.text_field_with_label :name, :wrapper_class => "highlight" %>
+
+    <%= f.text_area_with_label :description %>
+
+    <div class="attribute">
+      <div class="label">
+        <%= f.label :value %>
+      </div>
+      <div class="field">
+        <%= f.text_field :value, :size => 8 %>
+        <%= f.select :value_type, options_with_translation(Deal.value_types) %>
+        <span id='duration'>
+          <%= t('.for') %>
+          <%= f.text_field :duration, :size => 2, :style => "float: none;" %>
+          <span id="hourly" class="duration_span"><%= t(".hours") %></span>
+          <span id="monthly" class="duration_span"><%= t(".months") %></span>
+          <span id="yearly" class="duration_span"><%= t(".years") %></span>
+        </span>
+      </div>
+    </div>
+
+    <%= f.select_field_with_label(:assigned_to_id, users_for_assign) %>
+
+    <%- if resource.new_record? -%>
+      <%= f.autocomplete_field_with_label :contact_name, :url => autocomplete_contact_name_contacts_path %>
+    <%- end -%>
+
+    <%= render "shared/permissions", :f => f, :resource => @deal %>
+
+    <%= f.text_field_with_label :tag_list %>
+    <div class="sample-tags">
+      <%- most_used_tags.each do |tag| -%>
+        <span><%= tag %></span>
+      <%- end -%>
+      <p><%= t("entities.form.sample_tags_html")%></p>
+    </div>
+
+    <%= spinner_submit_with_cancel(f) %>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  <%= %{var tags = [#{ActsAsTaggableOn::Tag.all.map { |t| %{["#{t}","#{t}"]} }.join(',')}];}.html_safe %>
+</script>

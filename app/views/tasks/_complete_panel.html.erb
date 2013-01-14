@@ -1,0 +1,5 @@
+<span class="task-checkbox">
+  <%= form_for task, :url => complete_task_url(task), :remote => true, :html => {:id => dom_id(task, :done_at), :"data-validate" => false} do |f| -%>
+    <%= f.check_box :done_at, :class => "submit-on-check", :id => "task_done_at_#{task.id}" %>
+  <%- end -%>
+</span>

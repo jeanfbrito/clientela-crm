@@ -1,0 +1,5 @@
+<li>
+  <span class="created-at"><%= l(deal.created_at, :format => :activity) %></span>
+  <h3><%= link_to deal.name, deal_path(deal) -%></h3>
+  <%= formated_bid(deal) -%>
+</li>

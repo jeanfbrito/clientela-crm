@@ -1,0 +1,32 @@
+<%= sidebar_box do -%>
+  <%= sidebar_module_box :header => 'filter_period' do %>
+    <%= form_for :reports, :html => { :method => :get }, :builder => Clientela::FormBuilder do |f| -%>
+      <%= select_year(@year, :start_year => 2010, :end_year => Time.now.year) %>
+      <br/><br/>
+      <%= f.spinner_submit %>
+    <%- end -%>
+  <%- end -%>
+<%- end -%>
+
+<%= content_box do -%>
+  <%= inner_header do -%>
+    <%= content_tag :h1, t(".header", :year => @year)%>
+  <%- end -%>
+
+  <div class="full info-box">
+    <h2><span><%= t(".header_quantitative") %></span></h2>
+    <div class="container">
+      <div id="quantitative" class="googlevisualr-chart">&nbsp;</div>
+    </div>
+  </div>
+
+  <div class="full info-box">
+    <h2><span><%= t(".header_qualitative") %></span></h2>
+    <div class="container">
+      <div id="qualitative" class="googlevisualr-chart">&nbsp;</div>
+    </div>
+  </div>
+<%- end -%>
+<script src='https://www.google.com/jsapi'></script>
+<%= raw quantitative_chart.to_js("quantitative") %>
+<%= raw qualitative_chart.to_js("qualitative") %>

@@ -1,0 +1,8 @@
+<%- content_for :message_title do -%>
+Uhn... Ocorreu um erro na Dropbox.
+<%- end -%>
+<p>Olá <%= @user.name %>,</p>
+<p>Não encontramos no e-mail que você enviou um <strong>endereço de e-mail</strong> válido para o contato. Tem certeza de que você fez um <strong>forward</strong> ou <strong>encaminhamento</strong> de e-mail?</p>
+<p>Para saber como usar a <strong>Dropbox</strong> corretamente, acesse seu <%= link_to "perfil no Clientela", edit_user_url(@user) %>.</p>
+<p>Em caso de dúvidas, abra um chamado no suporte ou responda esse e-mail diretamente.</p>
+<p>Obrigado!</p>

@@ -1,0 +1,6 @@
+<dt class='task'><%= t(".task") %></dt>
+<dd>
+  <span class="date"><%= l(activity.created_at, :format => :activity) %></span>
+  <span class="refrecord <%= activity.action %>"><%= activity.record_name %></span>
+  <span class="posted-by"><%= t(".#{activity.action}", :author => activity.author_name) %></span>
+</dd>

@@ -1,0 +1,18 @@
+<div class="note-item" id="<%= dom_id(note) %>">
+  <strong><%= l(note.created_at, :format => :deal_history_note) %></strong>
+
+  <span style="float: right;">
+    <%= link_to image_tag("iconika-grey-icons/16x16/brush.png"), edit_note_url(note) %>
+    <%= link_to_icon_destroy_remote(note) %>
+  </span>        
+
+  <div style="float: right;">
+    <%- if note.attachment_file_name -%>
+      <%= link_to "Baixar anexo", note.attachment.url %>
+    <%- end -%>
+  </div>
+  <div style="color: #777777; font-size: 0.8em;"><%= t('.note_by', :author => note.author_name)%></div>
+  <div style="margin-top: 10px;">
+    <%= auto_link(simple_format(note.unquoted_content)) %>
+  </div>
+</div>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Clientela</title>
+    <%= javascript_include_tag :defaults, :cache => true %>
+    <%= csrf_meta_tag %>
+  </head>
+  <body>
+<%- @users = [] -%>
+<table border="1">
+  <tr>
+    <th>Id</th>
+    <th>Account</th>
+    <th>Já deveria ter pago?</th>
+    <th>Primeiro mês de cobrança</th>
+    <th width="200">Free Until</th>
+    <th>Activeted</th>
+    <th>Actions</th>
+    <th>Domain</th>
+    <th>Admin</th>
+    <th>Users e-mails</th>
+  </tr>
+
+  <%- @accounts.each do |account| -%>
+    <%- account.configure! if Rails.env.production? -%>
+      <%- should_had_pay = ((account.free_until + 11.days) < Date.today) -%>
+      <tr style="background-color: <%= should_had_pay ? "#FF9DA0":"#CDFFE2" %>">
+        <td>
+          <%= account.id %>
+        </td>
+        <td>
+          <%= account.name %>
+        </td>
+        <td>
+          <%= should_had_pay ? "Sim":"Nao" %>
+        </td>
+        <td>
+          <%= (account.free_until + 1.day).strftime("%B/%Y") %>
+        </td>
+        <td>
+          <%= account.free_until %>
+        </td>
+        <td>
+          <%= account.active %>
+        </td>
+        <td>
+          <%- if account.active -%>
+            <%= link_to "Sem&nbsp;pagamento".html_safe, admin_deactivate_account_url(account.id, :kind => :lock), :confirm => "Sure?" -%>
+            <br/><br/>
+            <%= link_to "Descumpriu&nbsp;termos".html_safe, admin_deactivate_account_url(account.id, :kind => :disable), :confirm => "Sure?" -%>
+          <%- else -%>
+            <%= link_to "Ativar", admin_activate_account_url(account.id), :confirm => "Sure?" -%>
+          <%- end -%>
+        </td>
+        <td>
+          <%= account.domain %>
+        </td>
+        <td>
+          <%= account.admin_name %>, <%= account.admin_email %>
+        </td>
+        <td>
+          <%
+            User.all.each do |user|
+              @users << [user.name, user.email, user.last_sign_in_at, account.domain, account.active]
+            end
+          %>
+          <%= User.all.map(&:email).join(', ') %>
+        </td>
+      </tr>
+  <%- end -%>
+</table>
+<br/><br/>
+Name, Email, Last sign in at, domain, active<br/>
+<%- @users.each do |user| -%>
+<%= user.join(',') %><br/>
+<%- end -%>
+</body>
+</html>

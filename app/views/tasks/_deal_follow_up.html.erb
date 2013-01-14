@@ -1,0 +1,45 @@
+<div id="task-form">
+  <h1><%= t(".header") %></h1>
+  <br/>
+  <%= form_for Task.new(:due_at => 1.week.from_now, :taskable => resource, :content => %{Follow-up. Oportunidade fechada em #{l(Date.today)}}), :builder => Clientela::FormBuilder do |f| -%>
+    <%= f.hidden_field :frame, :value => true %>
+    <%= f.hidden_field :taskable_type %><%= f.hidden_field :taskable_id %>
+
+    <div id="left-side">
+      <%= f.text_area_with_label :content, :class => "extensible" %>
+      <%= f.select_field_with_label :due, options_with_translation(Task.follow_up_due_values) %>
+
+      <%= f.select_field_with_label :category_id, [[t(".none"), nil]].concat(TaskCategory.all.map{ |t| [t.name, t.id]}) %>
+      <%= f.select_field_with_label :assigned_to_id, users_for_assign %>
+      <%= f.select_field_with_label :notify, options_with_translation(Task.notify_values) %>
+    </div>
+
+    <div id="right-side">
+      <div id="task-datepicker">
+        <div id="task-datepicker-wrapper">
+          <div id="new_datepicker">&nbsp;</div>
+          <div class="show-date">
+            <span class="selected-date"><%= l(1.week.from_now.to_date)%></span> às
+            <%= f.time_select :due_at, :minute_step => 15 %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="clear: both;">
+      <%= spinner_submit(f) %>
+    </div>
+  <%- end -%>
+</div>
+<script type="text/javascript">
+  var task_due = <%= {
+    :in_1_week => l(1.week.from_now.to_date, :format => :js),
+    :in_1_month => l(1.month.from_now.to_date, :format => :js),
+    :in_2_months => l(2.months.from_now.to_date, :format => :js),
+    :in_3_months => l(3.months.from_now.to_date, :format => :js),
+    :in_6_months => l(6.months.from_now.to_date, :format => :js)
+  }.to_json.html_safe
+  %>;
+  setDatePicker();
+  $("#new_datepicker").datepicker("setDate", <%= l(1.week.from_now.to_date, :format => :js) %>);
+</script>

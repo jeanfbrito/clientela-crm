@@ -1,0 +1,11 @@
+<li>
+  <%= small_thumb_tag('iconika-grey-icons/48x48/user.png') %>
+  <div class="user-data">
+    <div class="user-name"><%= user.name %></div>
+    <div class="user-email"><%= user.email %></div>
+    <div class="user-other">
+      <%- if user.admin? -%>Admin<%- end -%>
+      <%= link_to_icon_destroy(user, :confirm => t(".delete_confirmation")) if (current_user.admin? && (current_user != user)) %>
+    </div>
+  </div>
+</li>

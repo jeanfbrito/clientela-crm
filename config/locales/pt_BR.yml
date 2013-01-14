@@ -1,0 +1,869 @@
+pt_BR:
+  date:
+    formats:
+      default: "%d/%m/%Y"
+      short: "%d de %B"
+      long: "%d de %B de %Y"
+      abbr_month: "%b"
+      abbr_day: "%a"
+      js: "new Date(%Y,%m-1,%d)"
+
+    day_names:
+      - Domingo
+      - Segunda
+      - Terça
+      - Quarta
+      - Quinta
+      - Sexta
+      - Sábado
+    abbr_day_names:
+      - Dom
+      - Seg
+      - Ter
+      - Qua
+      - Qui
+      - Sex
+      - Sáb
+    month_names:
+      - ~
+      - Janeiro
+      - Fevereiro
+      - Março
+      - Abril
+      - Maio
+      - Junho
+      - Julho
+      - Agosto
+      - Setembro
+      - Outubro
+      - Novembro
+      - Dezembro
+    abbr_month_names:
+      - ~
+      - Jan
+      - Fev
+      - Mar
+      - Abr
+      - Mai
+      - Jun
+      - Jul
+      - Ago
+      - Set
+      - Out
+      - Nov
+      - Dez
+    order:
+      - :day
+      - :month
+      - :year
+  
+  time:
+    formats:
+      default: "%A, %d de %B de %Y, %H:%M h"
+      short: "%d/%m, %H:%M h"
+      long: "%A, %d de %B de %Y, %H:%M h"
+      task: "<strong>%d %b</strong>, %H:%Mh"
+      dashed_date: "%d/%m/%Y"
+      dashed_date_with_hour: "%d/%m/%Y às %H:%M"
+      activity: "%d %b"
+      deal_history_note: "%A, %d de %B, %H:%Mh"
+      month_year: "%B de %Y"
+      month: "%B"
+      hour: "%H"
+      minute: "%M"
+    am: ''
+    pm: ''
+
+  datetime:
+    distance_in_words:
+      half_a_minute: 'meio minuto'
+      less_than_x_seconds:
+        one: 'menos de 1 segundo'
+        other: 'menos de %{count} segundos'
+      
+      x_seconds:
+        one: '1 segundo'
+        other: '%{count} segundos'
+      
+      less_than_x_minutes:
+        one: 'menos de um minuto'
+        other: 'menos de %{count} minutos'
+      
+      x_minutes:
+        one: '1 minuto'
+        other: '%{count} minutos'
+      
+      about_x_hours:
+        one: 'aproximadamente 1 hora'
+        other: 'aproximadamente %{count} horas'
+      
+      x_days:
+        one: '1 dia'
+        other: '%{count} dias'
+      
+      about_x_months:
+        one: 'aproximadamente 1 mês'
+        other: 'aproximadamente %{count} meses'
+      
+      x_months:
+        one: '1 mês'
+        other: '%{count} meses'
+      
+      about_x_years:
+        one: 'aproximadamente 1 ano'
+        other: 'aproximadamente %{count} anos'
+      
+      over_x_years:
+        one: 'mais de 1 ano'
+        other: 'mais de %{count} anos'
+
+      almost_x_years:
+        one: 'quase 1 ano'
+        other: 'quase %{count} anos'
+    
+    prompts:
+      year:   "Ano"
+      month:  "Mês"
+      day:    "Dia"
+      hour:   "Hora"
+      minute: "Minuto"
+      second: "Segundos"
+
+  number:
+    format:
+      precision: 3
+      separator: ','
+      delimiter: '.'
+    currency:
+      format:
+        unit: 'R$'
+        precision: 2
+        format: '%u %n'
+        separator: ','
+        delimiter: '.'
+    percentage:
+      format:
+        delimiter: '.'
+    precision:
+      format:
+        delimiter: '.'
+    human:
+      format:
+        precision: 2
+        delimiter: '.'
+        significant: true
+        strip_unsignificant_zeros: true
+
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one: "Byte"
+            other: "Bytes"
+          kb: "KB"
+          mb: "MB"
+          gb: "GB"
+          tb: "TB"
+
+      decimal_units:
+        format: "%n %u"
+        units:
+          unit: ""     
+          thousand: "mil"
+          million:
+            one: milhão
+            other: milhões
+          billion:
+            one: bilhão
+            other: bilhões
+          trillion:
+            one: trilhão
+            other: trilhões
+          quadrillion:
+            one: quatrilhão
+            other: quatrilhões
+
+  support:
+    array:
+      words_connector: ", "
+      two_words_connector: " e "
+      last_word_connector: " e "
+
+  activerecord:
+    errors:
+      template:
+        header:
+          one: "Não foi possível gravar %{model}: 1 erro"
+          other: "Não foi possível gravar %{model}: %{count} erros."
+        body: "Por favor, verifique o(s) seguinte(s) campo(s):"
+      messages:
+        inclusion: "não está incluído na lista"
+        exclusion: "não está disponível"
+        invalid: "não é válido"
+        confirmation: "não está de acordo com a confirmação"
+        accepted: "deve ser aceito"
+        empty: "não pode ficar vazio"
+        blank: "não pode ficar em branco"
+        too_long: "é muito longo (máximo: %{count} caracteres)"
+        too_short: "é muito curto (mínimo: %{count} caracteres)"
+        wrong_length: "não possui o tamanho esperado (%{count} caracteres)"
+        taken: "já está em uso"
+        not_a_number: "não é um número"
+        not_an_integer: "não é um número inteiro"
+        greater_than: "deve ser maior do que %{count}"
+        greater_than_or_equal_to: "deve ser maior ou igual a %{count}"
+        equal_to: "deve ser igual a %{count}"
+        less_than: "deve ser menor do que %{count}"
+        less_than_or_equal_to: "deve ser menor ou igual a %{count}"
+        odd: "deve ser ímpar"
+        even: "deve ser par"
+        record_invalid: "A validação falhou: %{errors}"
+      models:
+        contact_import:
+          attachment_content_type: Deve ser um arquivo CSV
+          attachment_size: Deve ser menor que 10 megabytes
+          attachment_presence: Selecione um arquivo
+        account:
+          attributes:
+            domain:
+              invalid: contém apenas letras minúsculas e números e tem entre 1 e 15 caracteres
+
+    models:
+      account: Conta
+      campaign: Campanha
+      company: Empresa
+      contact: Contato
+      fact: Ocorrência
+      deal: Oportunidade
+      task: Tarefa
+      tag: Categoria
+      note: Histórico
+      phone: Telefone
+      email: e-mail
+      user: Usuário
+      task_category: Categoria
+      group: Grupo
+
+  user_mailer:
+    welcome:
+      subject: Bem-vindo ao Clientela!
+    welcome_billing_cycle:
+      subject: Bem-vindo ao Clientela!
+    task_notification:
+      task: Tarefa
+    subscription_update:
+      subject: "[ATUALIZAÇÃO] %{name}"
+    we_are_missing_you:
+      subject: "[Clientela] Sentimos a sua falta. Podemos ajudar?"
+    your_account_was_locked:
+      subject: "[Clientela] Sua conta foi bloqueada. Podemos ajudar?"
+    your_account_was_disabled:
+      subject: "[Clientela] Sua conta foi bloqueada. Podemos ajudar?"
+    satisfaction_survey_first_week:
+      subject: "[Clientela] O que você está achando do Clientela?"
+
+  helpers:
+    label:
+      user:
+        name: Nome
+        remember_me: Manter logado
+        email: E-mail
+        password: Senha
+        password_confirmation: Confirmação de senha
+      contact:
+        name: Nome
+        title: Cargo
+        company: Empresa
+        company_name: Empresa
+        notes: Notas
+        tag_list: Categorias
+        phones: Telefone
+        emails: Email
+        addresses: Endereço
+        websites: Website
+      deal:
+        name: Nome
+        description: Descrição
+        contact_name: Nome do contato
+        value: Valor em R$
+        assigned_to_id: Responsável?
+        won: Ganho
+        pending: Pendente
+        lost: Perdido
+        tag_list: Categorias
+      company:
+        name: Nome
+        tag_list: Categorias
+        phones: Telefone
+        emails: Email
+        addresses: Endereço
+        websites: Website
+      account:
+        name: Nome da conta
+        domain: Endereço
+        coupon: Possui um cupom? Cole aqui
+        goal_quantitative: Quantitativa
+        goal_qualitative: Qualitativa
+      contact_import:
+        file: Arquivo
+        kind: Tipo
+        kind_regular: "Importação comum. Deve serguir o padrão do arquivo exemplo mostrado ao lado."
+        kind_highrise: "Importação do Highrise. Importação do CSV exportado pelo Highrise da 37signals."
+      fact:
+        name: Nome
+        description: Descrição
+        tag_list: Categorias
+      note:
+        attachment: Quer anexar um arquivo ou foto?
+        created_at: Quando isso aconteceu?
+        proposal: Este arquivo é uma proposta?
+      task:
+        content: Descrição da tarefa
+        due: Qual é o prazo?
+        category_id: Escolha uma categoria
+        assigned_to_id: Quem é o responsável?
+        notify: Notificar?
+      task_category:
+        name: Nome
+        color: Cor
+      group:
+        name: Nome
+
+    submit: 
+      create: "Adicionar"
+      update: "Salvar %{model}"
+      reports:
+        submit: Filtrar
+
+  common:
+    edit: Editar
+    edit_company: Editar empresa
+    create: Criar
+    delete_confirmation: Você realmente deseja apagar?
+    remove: Apagar
+    at: na
+    or: ou
+    cancel: Cancelar
+    previous: Anterior
+    next: Próxima
+    actions: Ações
+    me: Eu
+    all: Todos
+
+  layouts:
+    application:
+      welcome: Bem vindo!
+      dashboard: Dashboard
+      contacts: Contatos
+      add_contacts: Adicionar novo contato
+      tasks: Tarefas
+      tags: Categorias
+      facts: Ocorrências
+      add_facts: Adicionar nova ocorrência
+      deals: Oportunidades
+      add_deals: Adicionar nova oportunidade
+      campaigns: Campanhas
+      surveys: Pesquisas
+      hello: "Oi <strong>%{name}</strong>"
+      account: Conta
+      users: Usuários
+      groups: Grupos
+      profile: Perfil
+      logout: Sair
+      support: Suporte
+      favorites: Favoritos
+      reports: Indicadores
+      add_html: <span>Adicionar</span>
+
+  contact_imports:
+    log: "Linha %{line}: %{message}"
+    parse_error: "Arquivo com erro de encoding: \"%{message}\". Efetuada tentativa de correção. Verificar se o resultado é satisfatório."
+    index:
+      header: Importação de contatos
+      import_contacts: Importar contatos
+      file: Arquivo
+      importing: Ainda importando...
+      imported_at: Concluído em...
+      show: Detalhes
+      
+    new: 
+      header: Faça upload de um arquivo CSV
+      
+    show:
+      header: Resultado para importação do arquivo "%{file_name}"
+      importing: Este arquivo está em processo de importação... Aguarde alguns minutos e depois retorne a esta página através do menu Contatos, botão Lista de Importações para ver o andamento.
+      total: Foram importados %{size} contatos
+      revert_header: Quer reverter a importação?
+      revert_message: Acha que a importação não ficou como você queria? Reverta essa importação e tende de novo.
+      revert_now: Reverter agora!
+
+  facts:
+    index:
+      header_index: Lista de ocorrências
+      header_closed: Lista de ocorrências fechadas
+      add_new_fact: Adicione nova ocorrência
+      opened: Em aberto
+      closed: Fechadas
+
+    fact:
+      last_update: Última atualização há %{distance}
+
+    new:
+      header: Adicionar ocorrência
+
+    edit:
+      header: Editar ocorrência
+      destroy: Apagar ocorrência
+      
+    show:
+      description: Descrição
+      closed_link: Desejo abrir novamente.
+      closed_message: Esta ocorrência está fechada.
+      opened_link: Desejo encerrá-la.
+      opened_message: Esta ocorrência está pendente de solução.
+      status: Situação
+
+  entities:
+    form:
+      new_phone: Adicionar telefone
+      new_email: Adicionar e-mail
+      new_address: Adicionar endereço
+      new_website: Adicionar site
+      sample_tags_html: Estas são <strong>categorias</strong> de exemplo. Clique para adicionar ou digite acima e pressione enter para cada tag.
+
+    phone:
+      work: Trabalho
+      home: Casa
+      mobile: Celular
+      nextel: Nextel
+      fax: Fax
+      skype: Skype
+      other: Outro
+
+    email:
+      work: Trabalho
+      home: Pessoal
+      other: Outro
+
+    address:
+      headquarters: Sede
+      subsidiary: Filial
+      office: Escritório
+      work: Trabalho
+      home: Pessoal
+      other: Outro
+      street: Endereço
+      city: Cidade
+      state: Estado
+      zip: CEP
+
+    website:
+      work: Trabalho
+      personal: Pessoal
+      blog: Blog
+      other: Outro
+
+    contact_data:
+      header_html: Dados de contato (%{edit_link})
+      phones: Telefones
+      emails: E-mails
+      websites: Sites
+      addresses: Endereços
+      map: Mapa
+
+  contacts:
+    index:
+      import_contacts: Importar contatos
+      add_new_contact: Adicione novo contato
+      import_contacts_list: Lista de importações
+      filter_by_initials: Filtro pela inicial
+      all: Todos
+      header: Contatos
+
+    favorite_add_remove:
+      add_filter: Adicionar como favorito
+      remove_filter: Remover dos favoritos
+      
+    new:
+      header: Adicionar contato
+      
+    edit:
+      header: Editar contato
+      destroy: Apagar contato
+
+    deals:
+      header: Oportunidades envolvidas
+      
+    facts:
+      header: Ocorrências envolvidas
+
+    show:
+      name: Nome
+      title: Cargo
+      company: Empresa
+      notes: Histórico
+      tags: Categorias
+      created_at: "Criado em: %{date}"
+      edit_note: Editar
+      delete_note: Apagar
+
+    company_contact_data:
+      header: "Dados de contato de %{company}"
+
+    form_avatar:
+      change: Alterar a foto de %{name}
+      select: Nova Foto
+      delete: Remover a foto atual
+  
+  notes:
+    list:
+      add_note: "Adicione uma nota sobre %{name}"
+      more_options: Mais opções (selecionar data, anexar arquivo, etc)
+      less_options: Esconder opções
+    edit:
+      edit_note: "Altera a nota sobre %{name}"
+      header: "Editando histórico"
+      cancel: Cancelar
+    note:
+      note_by: Nota por %{author}
+    sidebar_list:
+      header_images: Imagens anexas
+      header_proposal: Propostas
+
+  tags:
+    index:
+      header: Todas as categorias
+    sidebar_list:
+      header: Lista de categorias
+      
+    show:
+      header: Marcado com
+      contacts: Contatos
+      deals: Oportunidades
+      companies: Empresas
+
+  tasks:
+    index:
+      header: Tarefas a fazer
+      filters: Filtrar tarefas
+      by_assigned_to: Por responsável
+      filter: Filtrar
+    completed:
+      header: Tarefas realizadas
+    sidebar_list:
+      header: Suas próximas tarefas
+    list:
+      late_tasks: Tarefas atrasadas
+      today_tasks: Tarefas de hoje
+      future_tasks: Tarefas para depois
+    calendar:
+      taskable_entity:
+        header_contact: Contato
+        header_company: Empresa
+      taskable_deal:
+        header: Oportunidade
+      taskable_fact:
+        header: Ocorrência
+      task_info:
+        with: com empresa
+
+    task:
+      assigned_to: "Responsável:"
+
+    new:
+      add_task: Adicionar tarefa
+
+      today: Hoje
+      tomorrow: Amanhã
+      this_week: Esta semana
+      next_week: Próxima semana
+      specific_date_time: Escolher data
+
+      exact_time: Na hora exata
+      one_hour: Uma hora antes
+      two_hour: Duas horas antes
+      three_hour: Três horas antes
+      morning: De manhã cedo
+      day_before: Um dia antes
+      week_before: Uma semana antes
+      never: Nunca
+
+      none: Nenhuma
+    edit:
+      today: Hoje
+      tomorrow: Amanhã
+      this_week: Esta semana
+      next_week: Próxima semana
+      specific_date_time: Escolher data
+
+      exact_time: Na hora exata
+      one_hour: Uma hora antes
+      two_hour: Duas horas antes
+      three_hour: Três horas antes
+      morning: De manhã cedo
+      day_before: Um dia antes
+      week_before: Uma semana antes
+      never: Nunca
+
+      none: Nenhuma
+
+    form:
+      today: Hoje
+      tomorrow: Amanhã
+      this_week: Esta semana
+      next_week: Próxima semana
+      specific_date_time: Escolher data
+      
+      exact_time: Na hora exata
+      one_hour: Uma hora antes
+      two_hour: Duas horas antes
+      three_hour: Três horas antes
+      morning: De manhã cedo
+      day_before: Um dia antes
+      week_before: Uma semana antes
+      never: Nunca
+      
+      add_task: Adicionar tarefa
+      edit_task: Editar tarefa
+      cancel: Cancelar
+      or: ou
+      none: Nenhuma
+      assign: Atribuir tarefa a outro usuário.
+      select: Selecione o usuário
+    menu:
+      to_do: A fazer
+      done: Completadas
+    taskable_contact:
+      edit: Editar este contato
+      show: Ir para página deste contato
+
+    deal_follow_up:
+      header: Quando deseja realizar o follow-up?
+      in_1_week: Em uma semana
+      in_1_month: Em um mês
+      in_2_months: Em 2 meses
+      in_3_months: Em 3 meses
+      in_6_months: Em 6 meses
+      specific_date_time: Escolher data
+
+      exact_time: Na hora exata
+      one_hour: Uma hora antes
+      two_hour: Duas horas antes
+      three_hour: Três horas antes
+      morning: De manhã cedo
+      day_before: Um dia antes
+      week_before: Uma semana antes
+      never: Nunca
+
+      none: Nenhuma
+  task_categories:
+    new:
+      header: Adicionar Categoria de Tarefa
+    edit:
+      header: Editar Categoria de Tarefa
+
+  deals:
+    common:
+      no_value: Valor não cadastrado
+      fixed_bid: "%{value} valor fixo"
+      hourly_bid: "%{total} por %{duration} horas cobrando %{value}/hora"
+      monthly_bid: "%{total} por %{duration} meses cobrando %{value}/mes"
+      yearly_bid: "%{total} por %{duration} anos cobrando %{value}/ano"
+    sidebar_list:
+      header: Oportunidades Abertas
+    new:
+      header: Nova oportunidade
+    form:
+      for: por
+      hours: horas
+      months: meses
+      years: anos
+      fixed: valor fixo
+      hourly: a hora
+      monthly: o mês
+      yearly: o ano
+    index:
+      header: Oportunidades
+      filters: Filtro por fase
+      add_new_deal: Adicione nova oportunidade
+    list:
+      prospect: Oportunidades em prospecção
+      qualify: Oportunidades qualificadas
+      proposal: Oportunidades com proposta enviada
+      negotiation: Oportunidades em negociação
+      lost: Oportunidades perdidas
+      won: Oportunidades ganhas
+      pending: Oportunidades pendentes
+      total: "%{count} somando %{value}"
+    show:
+      sidebar_header_status: Fase de negociação
+      sidebar_header_probability: Probabilidade de fechar
+      status: Status
+      statuses:
+        prospect: Prospect
+        qualify: Qualificação
+        proposal: Proposta
+        negotiation: Negociação
+        lost: Perdido
+        won: Ganho
+      description: Descrição
+      value: Valor
+      contact: Contato
+      tags: Categorias
+      notes: Histórico
+
+    edit:
+      header: "Editar: %{name}"
+      destroy: "Apagar oportunidade"
+
+  relationships:
+    sidebar_list:
+      header: Quem está envolvido?
+      no_relationship: É provável que esta oportunidade esteja relacionada a algum contato.
+      add_relationship: Adicionar mais um contato.
+      create_relationship: Crie agora um relacionamento com um contato.
+      relationship_search_by_name: Busque pelo nome de contato...
+      select_contact: Você não selecionou o contato.
+
+  companies:
+    edit:
+      header: Editando Empresa
+    contacts_sidebar:
+      header: Contatos nessa empresa
+    form_avatar:
+      change: Alterar a logo de %{name}
+      select: Nova logo
+      delete: Remover a logo atual
+      
+  dashboard:
+    show:
+      header: Dashboard
+      activities_header: Últimas alterações
+      all_tasks: Todas as tarefas
+      prev_weeks: Semanas anteriores
+      next_weeks: Próximas semanas
+      sunday: Domingo
+      monday: Segunda
+      tuesday: terça
+      wednesday: Quarta
+      thursday: Quinta
+      friday: Sexta
+      saturday: Sábado
+      deals: Oportunidades em aberto
+      deal_status: Funil de oportunidades
+      show_all_deals: Ver todas as oportunidades
+      show_hide_weekend: Mostrar / Esconder fim de semana
+    deal_activity:
+      won_tag: Ganha
+      pending_tag: Pendente
+      lost_tag: Perdida
+      prospect_tag: Prospect
+      qualify_tag: Qualificação
+      proposal_tag: Proposta
+      negotiation_tag: Negociação
+      create_tag: Oportunidade
+      destroy_tag: Oportunidade
+      won: "%{author} marcou a oportunidade como ganha."
+      pending: "%{author} marcou a oportunidade como pendente."
+      lost: "%{author} marcou a oportunidade como perdida."
+      create: "%{author} criou uma nova oportunidade."
+      destroy: "%{author} apagou uma oportunidade."
+      prospect: "%{author} marcou a oportunidade como prospect."
+      qualify: "%{author} marcou a oportunidade como em qualificação."
+      proposal: "%{author} marcou a oportunidade com proposta enviada."
+      negotiation: "%{author} marcou a oportunidade como em negociação."
+    task_activity:
+      create: "%{author} criou uma tarefa"
+      done: "%{author} marcou a tarefa como pronta"
+      task: Tarefa
+    note_activity:
+      create: "Postado por %{author}"
+      destroy: "Apagado por %{author}"
+      note: Histórico
+  invitations:
+    edit:
+      header: Informações do Usuário
+      submit: Aceitar
+      password_confirmation: Confirmação de senha
+    new:
+      header: Convidar Usuário
+  users:
+    index:
+      header: Usuários
+      add_new_user: Convidar novo usuário
+    new:
+      header: Adicionar usuário
+    edit:
+      header: Editar seu perfil
+      header_token: Token de autenticação na API
+      token_message_html: Seu <strong>token de autenticação</strong> é um código que permite outros softwares ou serviços conectar no Clientela com a sua permissão. Você deve manter esse código protegido, assim como mantém sua senha de acesso. Se você acredita que o seu código foi comprometido, faça a geração de um novo.
+      token_here: Seu Token
+      regenerate: Gerar novo token
+
+    form:
+      new_user_password: A senha deve ter entre 6 e 20 caracteres.
+      user_change_password: Digite apenas se quiser alterar. Sua nova senha deve ter entre 6 e 20 caracteres.
+      submit: Salvar
+    user:
+      delete_confirmation: "Tem certeza que deseja remover esse usuário? Isso irá remover também qualquer tarefa a ele associada. Depois de apagado, não há como voltar."
+
+  accounts:
+    edit:
+      header: Editando a sua conta
+      destroy_account: Remover esta conta
+      edit_task_categories: Editar categoria de tarefas
+      create_task_category: Criar categoria
+
+  campaigns:
+    new:
+      header: Adicionar Campanhas
+    edit:
+      header: Editar Campanha
+    form:
+      planned: Planejado
+      started: Iniciado
+      completed: Completado
+      hold: Em espera
+      canceled: Cancelado
+
+  reports:
+    index:
+      header: Indicadores de Venda de %{year}
+      header_quantitative: Quantidade de Oportunidades
+      header_qualitative: Montante em R$
+      filter_period: Filtrar por Período
+      goals: Metas
+
+  groups:
+    index:
+      header: Grupos de usuários
+      add_new: Adicionar novo grupo
+    new:
+      header: Adicionar Grupo
+    edit:
+      header: Editar Grupo
+
+  searches:
+    show:
+      header: Buscando por '%{q}'
+      not_found: Nenhum item foi encontrado.
+    form:
+      search: Buscar
+      message: Busque por nome, e-mail, ocorrência...
+
+  support:
+    api:
+      header: Veja como utilizar a API
+
+  shared:
+    dropbox:
+      header: Aqui há uma dropbox
+      description_html: "Envie um e-mail para: %{email} e ele será anexado como uma nota neste item."
+      read_more: Veja aqui como funciona o dropbox.
+
+    subscriptions:
+      header: Mantenha-se atualizado
+      turn_on: Habilite os updates por e-mail
+      and_receive: e receba as atualizações e comentários deste contato.
+      you_re_subscribed: Você está acompanhando este contato.
+      turn_off: Não quero mais acompanhar.

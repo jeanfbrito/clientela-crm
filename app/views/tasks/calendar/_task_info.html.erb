@@ -1,0 +1,18 @@
+<div id="<%= dom_id(task, :panel) %>" class="task-info">
+  <h2><%= task.content %></h2>
+
+  <%- if task.frame? -%>
+    <strong><%= format_task_time(task) %></strong>
+    <%- if task.taskable? and task.taskable.is_a?(Contact) and task.taskable.company -%>
+      <%= t(".with") %> <%= link_to(task.taskable.company.name, company_url(task.taskable.company)) %>
+    <%- end -%>
+  <%- end -%>
+
+  <%= render :partial => "tasks/calendar/taskable_#{task.taskable.class.base_class.name.underscore}", :locals => { :taskable => task.taskable } if task.taskable? %>
+
+  <div class="task-controls"><%= link_to t("common.edit"), edit_task_url(task, :format => :js), :class => "fancybox-ajax" %> <%= t("common.or") %> <%= link_to_icon_destroy_remote(task) %></div>
+
+  <div class="pointer-left">
+    <div class="pointer-left-inner"></div>
+  </div>
+</div>

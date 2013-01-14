@@ -1,0 +1,71 @@
+<div id="task-form">
+  <form accept-charset="UTF-8" action="/tasks" class="new_task" id="new_task" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="aBwsVHOvVuvR/xkH4+zptbH+Lu+qv9+Zlg59uuZHcK4=" /></div>    <div class="attribute"><div class="label"><label for="task_content">Descrição da tarefa</label></div><div class="field"><textarea class="extensible" id="task_content" name="task[content]"></textarea></div></div>
+    <div class="attribute"><div class="label"><label for="task_due">Qual é o prazo?</label></div><div class="field"><select id="task_due" name="task[due]"><option value="today">Hoje</option>
+<option value="tomorrow">Amanhã</option>
+<option value="this_week">Esta semana</option>
+<option value="next_week">Próxima semana</option>
+<option value="specific_date_time">Escolher data</option></select></div></div>
+
+    <div style="display: none;" id="task-datepicker">
+      <div id="new_datepicker">&nbsp;</div>
+      <div>
+        <span class="selected-date">12/07/2011</span> às
+        <input id="task_due_at_1i" name="task[due_at(1i)]" type="hidden" value="2011" />
+<input id="task_due_at_2i" name="task[due_at(2i)]" type="hidden" value="7" />
+<input id="task_due_at_3i" name="task[due_at(3i)]" type="hidden" value="12" />
+<select id="task_due_at_4i" name="task[due_at(4i)]">
+<option value="00">00</option>
+<option value="01">01</option>
+<option value="02">02</option>
+<option value="03">03</option>
+<option value="04">04</option>
+<option value="05">05</option>
+<option value="06">06</option>
+<option value="07">07</option>
+<option value="08">08</option>
+<option value="09">09</option>
+<option value="10">10</option>
+<option value="11">11</option>
+<option value="12">12</option>
+<option value="13">13</option>
+<option value="14">14</option>
+<option value="15">15</option>
+<option selected="selected" value="16">16</option>
+<option value="17">17</option>
+<option value="18">18</option>
+<option value="19">19</option>
+<option value="20">20</option>
+<option value="21">21</option>
+<option value="22">22</option>
+<option value="23">23</option>
+</select>
+ : <select id="task_due_at_5i" name="task[due_at(5i)]">
+<option value="00">00</option>
+<option value="15">15</option>
+<option value="30">30</option>
+<option value="45">45</option>
+</select>
+
+      </div>
+    </div>
+
+    <div class="attribute"><div class="label"><label for="task_category_id">Escolha uma categoria</label></div><div class="field"><select id="task_category_id" name="task[category_id]"><option value="">Nenhuma</option>
+<option value="32">Agradecimento</option>
+<option value="29">Almoço</option>
+<option value="26">E-mail</option>
+<option value="31">Envio</option>
+<option value="27">Fax</option>
+<option value="25">Ligação</option>
+<option value="28">Retorno</option>
+<option value="30">Reunião</option></select></div></div>
+    <div class="attribute"><div class="label"><label for="task_assigned_to_id">Quem é o responsável?</label></div><div class="field"><select id="task_assigned_to_id" name="task[assigned_to_id]"><option value="3">Eu</option></select></div></div>
+    <div class="attribute"><div class="label"><label for="task_notify">Notificar?</label></div><div class="field"><select id="task_notify" name="task[notify]"><option value="one_hour">Uma hora antes</option>
+<option value="two_hour">Duas horas antes</option>
+<option value="three_hour">Três horas antes</option>
+<option value="morning">De manhã cedo</option>
+<option value="day_before">Um dia antes</option>
+<option value="week_before">Uma semana antes</option>
+<option value="never">Nunca</option></select></div></div>
+
+    <img alt="Spinner" class="spinner" src="/images/spinner.gif?1308776379" /><input class="button" id="task_submit" name="commit" type="submit" value="Adicionar" />
+</form></div>

@@ -1,0 +1,15 @@
+<%= sidebar_module_box(:header => "Detalhes sobre a importação!", :i18n => false) do -%>
+  <p>Você deve fazer upload de um arquivo CSV com as seguintes características:</p>
+  <ul style="list-style: square; margin: 15px 0 15px 25px;">
+    <li>A primeira linha NÃO deve ser um cabeçalho</li>
+    <li>A ordem dos campos no arquivo deve ser: nome, e-mail, telefone, cargo, empresa, site, categoria</li>
+    <li>Campos não existentes podem ficar vazios</li>
+    <li>O encoding do arquivo deve ser UTF-8 para que os acentos sejam importados corretamente</li>
+    <li>Até 10 megabytes de tamanho</li>
+  </ul>
+  <p>Após o upload do arquivo aguarde alguns instantes até que a importação termine.</p>
+  <br/>
+  <p>Baixe o <%= link_to "arquivo de exemplo", "/sample.csv" %> e teste agora mesmo a importação. Depois ela pode ser desfeita se não sair como você esperava.</p>
+  <br/>
+  <p><strong>Dúvidas?</strong> Abra um chamado agora!</p>
+<%- end -%>

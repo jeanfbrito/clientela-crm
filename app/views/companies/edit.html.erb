@@ -1,0 +1,21 @@
+<%= content_box do -%>
+  <%= render 'form' %>
+  <%= render 'form_avatar' %>
+  
+  <script type="text/javascript">
+    $(document).ready(function() {
+      var contact_dom_id = '<%= dom_id(resource) %>';
+      $("div#avatar a").click(function(){
+        $("#edit_" + contact_dom_id).hide();
+        $("#avatar_edit_" + contact_dom_id).show();
+        return false;
+      });
+
+      $(".avatar_edit a.cancel").click(function(){
+        $("#edit_" + contact_dom_id).show();
+        $("#avatar_edit_" + contact_dom_id).hide();
+        return false;
+      });
+    });
+  </script>
+<%- end -%>

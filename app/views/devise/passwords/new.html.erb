@@ -1,0 +1,19 @@
+<div id="login">
+  <div id="login_header">
+    <h2><%= t(".header") %></h2>
+  </div>
+  <div id="login_content">        
+    <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
+      <p>
+        <%= f.label :email %>
+        <%= f.text_field :email %>
+        <%= error_for_field(f, :email) %>
+      </p>
+
+      <p>
+        <%= image_tag("spinner.gif", :class => "spinner") %>
+        <%= f.submit t(".submit") %>
+      </p>
+    <%- end -%>
+  </div>
+</div>

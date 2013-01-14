@@ -1,0 +1,5 @@
+<div class="fields">
+  <%= f.text_field :number %>
+  <%= f.select :kind, options_with_translation(Phone.kinds) %>
+  <%= remove_child_link t("common.remove"), f %>
+</div>

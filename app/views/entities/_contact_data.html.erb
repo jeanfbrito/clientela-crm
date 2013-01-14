@@ -1,0 +1,45 @@
+<%- unless resource.phones.blank? && resource.emails.blank? && resource.websites.blank? && resource.addresses.blank?-%>
+  <%= sidebar_module_box(:header => t(".header_html", :edit_link => link_to(t("common.edit"), edit_polymorphic_url(resource))), :i18n => false) do %>
+    <dl class="sidebar-contact-data">
+
+      <%- unless resource.phones.blank? -%>
+        <dt><%= t(".phones") %></dt>
+        <%- resource.phones.each do |phone| -%>
+          <dd>
+            <%= phone.number %><span><%= t("entities.phone.#{phone.kind}").downcase %></span>
+          </dd>
+        <%- end -%>
+      <%- end -%>
+
+      <%- unless resource.emails.blank? -%>
+        <dt><%= t(".emails") %></dt>
+        <%- resource.emails.each do |email| -%>
+          <dd>
+            <%= mail_to email.address, nil, :bcc => Clientela::Base.polymorphic_email_dropbox(resource) %><span><%= t("entities.email.#{email.kind}") %></span>
+          </dd>
+        <%- end -%>
+      <%- end -%>
+
+      <%- unless resource.websites.blank? -%>
+        <dt><%= t(".websites") %></dt>
+        <%- resource.websites.each do |website| -%>
+          <dd>
+            <%= link_to website.url.gsub("http://", ''), (website.url.start_with?("http://") ? website.url : "http://#{website.url}"), :target => "_blank"%><span><%= t("entities.website.#{website.kind}") %></span>
+          </dd>
+        <%- end -%>
+      <%- end -%>
+
+      <%- unless resource.addresses.blank? -%>
+        <dt><%= t(".addresses") %></dt>
+        <%- resource.addresses.each do |address| -%>
+          <dd>
+            <%= address.line1 unless address.line1.blank? %>
+            <%- unless address.line1.blank? || address.line2.blank? -%><br/><%- end -%>
+            <%= address.line2 %><span><%= t("entities.address.#{address.kind}") %></span>
+            <br/><%= link_to t(".map"), address.map_link %>
+          </dd>
+        <%- end -%>
+      <%- end -%>
+    </dl>
+  <% end %>
+<%- end -%>

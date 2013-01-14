@@ -1,0 +1,126 @@
+@import "compass/css3/box-shadow";
+
+/** Color variables */
+$header-top-gradient: #FFF !default;
+$header-bottom-gradient: #FFF !default;
+$header-search-border: #FFF !default;
+$header-menu-font: #FFF !default;
+$header-menu-link-font: #FFF !default;
+$header-title-shadow: #CCC !default;
+$main-inner-header-background: #FFF !default;
+
+body{
+  background: #F3F1EC;
+}
+
+div#header {
+  @include single-box-shadow(#666, -3px, 0, 3px);
+  background-color: $header-top-gradient;
+  background-image: -webkit-gradient(linear, left top, left bottom, from($header-top-gradient), to($header-bottom-gradient));
+  background-image: -moz-linear-gradient(center top, $header-top-gradient 0%, $header-bottom-gradient 100% );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$header-top-gradient', endColorstr='$header-bottom-gradient');
+
+  h1 {
+    color: #FFF;
+    text-shadow: 0 2px 2px $header-title-shadow;
+
+    a, a:active, a:hover, a:focus {
+      color: $header-menu-font;
+    }
+  }
+
+  div.search {
+    input[type=text] {
+      border: 1px solid $header-search-border;
+      color: #777;
+    }
+  }
+
+  div.menu {
+    color: $header-menu-font;
+      
+    a {
+      color: $header-menu-link-font;
+    }
+  }
+}
+
+div#left-sidebar {
+  ul {
+    li:hover {
+      background-color: #efede7 !important;
+    }
+
+    li {
+      a {
+        color: #555555;
+        text-shadow: 0 1px 1px #FFFFFF;
+      }
+
+      &.current {
+        background-color: #E5E3DE;
+
+        a {
+          color: #000;
+        }
+      }
+    }
+  }
+}
+
+div#right-sidebar {
+  div.sidebar-module {
+    background-color: #FCFCFC;
+    border: 2px solid #E5E5E5;
+
+    h2 {
+      border-bottom: 1px solid #EFEFEF;
+    }
+  }
+}
+
+div#tasks_list, #calendar {
+  h3.late {
+    color: #F00;
+  }
+
+  ul {                
+    li {
+      span.panel-task {
+        border: 2px solid #E5E5E5;
+        background-color: #fff;
+      }
+
+      span.task-body {        
+        span.category {
+          color: #fff;
+        }
+
+        span.assigned-to {
+          color: #666;
+          background-color: #EEE;
+        }
+      }
+    }
+  }
+}
+
+div#main{
+  background-color: #FFFFFF;
+  border: 2px solid #E5E5E5;
+
+  div.inner_header {
+    background: $main-inner-header-background;
+    border-bottom: 1px solid #DADEE5;
+  }
+}
+
+div#footer {
+  border-top: 1px solid #D7D7D7;
+  color: #555;
+  text-shadow: 0 1px 1px #fff;
+  a {
+    color: #555;
+    text-decoration: none;
+  }
+}

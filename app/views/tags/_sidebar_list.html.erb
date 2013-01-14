@@ -1,0 +1,16 @@
+<%- unless tags.blank? -%>
+  <div class="sidebar-module">
+    <h2><%= t('.header') %></h2>
+    <div class="inner">
+      <%- tags.each do |value| -%>
+        <p style="line-height: 1.8em;">
+          <strong><%= value.first.capitalize %></strong>
+          <%- value.last.each do |tag| -%>
+            <% url = controller_name == "contacts" ? tag_contacts_url(tag) : tag_url(tag) %>
+            <%= link_to tag.name, url %>
+          <%- end -%>
+        </p>
+      <%- end -%>
+    </div>
+  </div>
+<%- end -%>

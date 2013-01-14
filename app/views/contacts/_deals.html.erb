@@ -1,0 +1,17 @@
+<%- unless @contact.deals.blank? -%>
+  <%= sidebar_module_box(:header => :header) do -%>
+    <table>
+      <%- @contact.deals.each do |deal| -%>
+        <tr>
+          <td>
+            <%= image_tag "icons/deal.png", :size => "32x32" %>
+          </td>
+          <td style="vertical-align: middle;">
+            <%= link_to deal.name, deal %><br />
+            <p><%= formated_bid(deal) %></p>
+          </td>
+        </tr>
+      <%- end -%>
+    </table>
+  <%- end -%>
+<%- end -%>

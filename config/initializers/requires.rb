@@ -1,0 +1,5 @@
+require 'debug_helper'
+require 'acts_as_taggable_on_extensions'
+require 'paperclip_extensions'
+require 'date_extensions'
+require 'csv'

@@ -1,0 +1,7 @@
+<div id="deals-container">
+  <%- if deals.any? -%>
+    <%= sidebar_module_box(:header => :header) do -%>
+      <%= render :partial => "deals/pending_list", :collection => deals, :as => :deal -%>
+    <%- end -%>
+  <%- end -%>
+</div>

@@ -1,0 +1,21 @@
+<%= form_for(@contact_import, :builder => Clientela::FormBuilder, :html => { :multipart => true }) do |f| %>
+  <div class="attributes">
+    <%= f.file_field_with_label :file %>
+
+    <div class="attribute">
+      <div class="label">
+        <%= f.label :kind %>
+      </div>
+      <div class="field">
+        <%= f.radio_button :kind, :regular %>
+        <%= f.label :kind_regular %>
+        <br/>
+        <%= f.radio_button :kind, :highrise %>
+        <%= f.label :kind_highrise %>
+        <%= error_for_field(f, :kind) %>
+      </div>
+    </div>
+
+    <%= spinner_submit_with_cancel(f) %>
+  </div>
+<% end %>

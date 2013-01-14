@@ -1,0 +1,40 @@
+<%- if flash[:notice] -%>
+  <p class="notification information">
+    <%= flash[:notice] %>
+  </p>
+<%- end -%>
+
+<div id="login">
+  <div id="login_header">
+    <h2>Login</h2>
+  </div>
+  <div id="login_content">
+    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+      <%- if alert -%>
+        <p class="notification error">
+          <%= alert %>
+        </p>
+      <%- end -%>
+
+      <p>
+        <%= f.label :email %>
+        <%= f.text_field :email %>
+      </p>
+
+      <p>
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+      </p>
+
+      <p class="checkbox">
+        <%= f.check_box :remember_me %> <%= f.label :remember_me %>
+      </p>
+      
+      <p>
+        <%= image_tag("spinner.gif", :class => "spinner") %>
+        <%= f.submit 'Login' %>
+      </p>
+    <%- end -%>
+  </div>
+</div>
+<%= link_to t(".forgot_password"), new_password_path(resource_name) %>

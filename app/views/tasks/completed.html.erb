@@ -1,0 +1,25 @@
+<%= content_box do -%>
+  <%= inner_header do -%>
+    <%= render :partial => "tasks/menu", :locals => {:header => t(".header")} %>
+  <%- end -%>
+
+  <div id="tasks_list">
+    <ul>
+      <%= month = nil %>
+      <%- @tasks.each do |task| -%>
+        <% unless task.done_at.month == month %>
+          <h3><%= l(task.done_at, :format => :month) %></h3>
+        <% end %>
+
+        <li id="<%= dom_id(task) %>" class="task-li">
+          <%= task_format(task).html_safe %>
+          <span style="float: right">
+            <%= link_to_icon_destroy_remote(task) %>
+          </span>
+        </li>
+
+        <% month = task.done_at.month %>
+      <%- end -%>
+    </ul>
+  </div>
+<%- end -%>

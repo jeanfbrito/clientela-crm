@@ -1,0 +1,31 @@
+<%= form_for @campaign do |f| %>
+  <ul>
+    <li>
+      <%= f.label :name %>
+      <%= f.text_field :name, :class => "small" %>
+    </li>
+    <li>
+      <%= f.label :start_date %>
+      <%= f.date_select :start_date %>
+    </li>
+    <li>
+      <%= f.label :end_date %>
+      <%= f.date_select :end_date %>
+    </li>
+    <li>
+      <%= f.label :status %>
+      <%= f.select :status, options_with_translation(Campaign::STATUS) %>
+    </li>
+    <li>
+      <%= f.label :description %>
+      <%= f.text_area :description, :rows => 8 %>
+    </li>
+    <li>
+      <%= f.label :budget %>
+      <%= f.text_field :budget %>
+    </li>
+    <li>
+      <%= spinner_submit(f) %>
+    </li>
+  </ul>
+<% end %>

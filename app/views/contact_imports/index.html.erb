@@ -1,0 +1,57 @@
+<%- sidebar_box(false) do -%>
+  <%= render :partial => 'info' %>
+  <%= link_to content_tag(:span, t(".import_contacts")), new_contact_import_url, :class => :button %><br/>
+<%- end -%>
+
+<%= content_box do -%>
+<div id="imports">
+  <table>
+    <tr>
+      <th><%= t('.file') %></th>
+      <th><%= t('.imported_at') %></th>
+      <th></th>
+    </tr>
+
+  <% @contact_imports.each do |contact_import| %>
+    <tr>
+      <td>
+        <%= contact_import.file_file_name %>
+      </td>
+      <td>
+        <%= l(contact_import.imported_at, :format => :short) rescue t('.importing') %>
+      </td>
+      <td><%= link_to t('.show'), contact_import %></td>
+    </tr>
+  <% end %>
+  </table>
+</div>
+<%- end -%>
+
+<style type="text/css">
+div#imports {
+  border: 1px solid #E5E5E5;
+  border-radius: 0 0 6px 6px;
+  margin: 5px 0;
+}
+
+div#imports table {
+  width: 100%;
+}
+
+div#imports table tr th {
+    background-color: #EFEDE7;
+    border-left: 1px solid #FFFFFF;
+    border-right: 1px solid #CCCCCC;
+    border-top: 1px solid #FFFFFF;
+    padding: 4px 0;
+    text-align: center;
+    text-shadow: 0 1px 0 #FFFFFF;
+    width: 14%;
+}
+
+div#imports table tr td {
+    border-right: 1px solid #E5E5E5;
+    border-top: 1px solid #E5E5E5;
+    padding: 4px;
+}
+</style>

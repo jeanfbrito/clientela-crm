@@ -1,0 +1,63 @@
+<%= stylesheet_link_tag 'vendor/colorpicker' %>
+<%= javascript_include_tag 'colorpicker' %>
+
+<%= form_for resource, :builder => Clientela::FormBuilder do |f| -%>
+  <div class="attributes">
+    <%= f.text_field_with_label :name %>
+    <div class="attribute">
+      <div class="label">
+        <%= f.label :color %>
+      </div>
+      <div class="field">
+        <div id="colorSelector"><div style="background-color: #<%= resource.color || '00ff00' %>"></div></div>
+        <%= f.hidden_field :color %>
+      </div>
+    </div>
+    <%= f.spinner_submit %>
+  </div>
+<%- end -%>
+
+<style>
+#colorSelector {
+    position: relative;
+    width: 36px;
+    height: 36px;
+    background: url(/images/colorpicker/select2.png);
+}
+#colorSelector div {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 29px;
+    height: 28px;
+    background: url(/images/colorpicker/select2.png) center;
+}
+
+</style>
+
+<script type="text/javascript">
+$('#colorSelector').ColorPicker({
+    color: "#<%= resource.color || '00ff00' %>",
+
+  	onShow: function (colpkr) {
+
+  		$(colpkr).css('z-index','1101');
+  		$(colpkr).fadeIn(500);
+  		return false;
+  	},
+  	onHide: function (colpkr) {
+  		$(colpkr).fadeOut(500);
+  		return false;
+  	},
+  	onChange: function (hsb, hex, rgb) {
+  		$('#colorSelector div').css('backgroundColor', '#' + hex);
+  		$('#task_category_color').val(hex);
+  	}
+});
+
+$(".fancybox-ajax").fancybox({
+  onClosed: function() {
+    $('.colorpicker').css('display','none');
+  }
+});
+</script>

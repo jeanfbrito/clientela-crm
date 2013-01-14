@@ -1,0 +1,22 @@
+<div id="tasks_list">
+  <%- if current_tasks.pending.any? -%>
+    <h3 class="late"><%= t(".late_tasks") %></h3>
+    <ul>
+      <%= render :partial => 'tasks/task', :collection => current_tasks.pending %>
+    </ul>
+  <%- end -%>
+
+  <%- if current_tasks.today.any? -%>
+    <h3><%= t(".today_tasks") %></h3>
+    <ul>
+      <%= render :partial => 'tasks/task', :collection => current_tasks.today %>
+    </ul>
+  <%- end -%>
+
+  <%- if current_tasks.future.any? -%>
+    <h3><%= t(".future_tasks") %></h3>
+    <ul>
+      <%= render :partial => 'tasks/task', :collection => current_tasks.future %>
+    </ul>
+  <%- end -%>
+</div>

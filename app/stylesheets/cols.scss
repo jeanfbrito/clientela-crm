@@ -1,0 +1,31 @@
+/* Columns   */
+.col25  { width: 25%; }
+.col30  { width: 30%; }
+.col50  { width: 50%; }
+.col70  { width: 66%; }
+.col25, .col30, .col50, .col70  { float: left; }
+.col25, .col30, .col50, .col70, .col-fixed-left, .col-fixed-right, .col-middle  { margin-left: 10px; margin-right: 10px; }
+.row, .col  { overflow: hidden; _height: 100%; padding: 0 14px; }
+
+/* Fixed Columns   */
+.col-fixed-left {
+  float: left;
+  padding: 0;
+  width: 180px;
+}
+
+.col-fixed-right {
+  float: right;
+  padding: 0;
+  min-width: 220px;
+  max-width: 300px;
+}
+
+.col-middle {
+  overflow: hidden;
+  padding: 0;
+}
+
+* html .col-middle {
+  float: left;
+}

@@ -1,0 +1,24 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: clientela_development
+  pool: 5
+  username: postgres
+  password:
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: clientela_test
+  pool: 5
+  username: postgres
+  password:
+  min_messages: WARNING
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: clientela_production
+  pool: 5
+  username: postgres
+  password:

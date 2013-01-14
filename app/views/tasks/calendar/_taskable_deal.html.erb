@@ -1,0 +1,12 @@
+<h3><%= t(".header") %></h3>
+
+<div class="quick-show-content">
+  <%= small_thumb_tag('iconika-grey-icons/48x48/star.png') %>
+  <div class="deal-data">
+    <div class="deal-name"><%= link_to taskable.name, taskable %></div>
+    <br/>
+    <div class="deal-bid">
+      <%= formated_bid(taskable) %>
+    </div>
+  </div>
+</div>

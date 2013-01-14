@@ -1,0 +1,22 @@
+<%- sidebar_box do -%>
+  <%= sidebar_module_box :header => 'actions' do %>
+    <%= link_to content_tag(:span, t(".add_new_fact")), new_fact_url, :class => :button %>
+  <%- end -%>
+<%- end -%>
+
+<%= content_box do -%>
+  <%= inner_header do -%>
+    <h1 style="display: inline;"><%= t(".header_#{action_name}") %></h1>
+    <span style="float: right; font-size: 0.9em;"><%= link_to_unless_current t(".opened"), facts_url %> | <%= link_to_unless_current t(".closed"), closed_facts_url %></span>
+  <%- end -%>
+
+  <%- if @facts.any? -%>
+    <div class="fact-index-list index-list">
+      <ul>
+        <%= render @facts %>
+      </ul>
+    </div>
+  <%- else -%>
+    <%= render :partial => "welcome"%>
+  <%- end -%>
+<%- end -%>

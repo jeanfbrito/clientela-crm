@@ -1,0 +1,12 @@
+<div class="title_and_company">
+  <%- unless contact.title.blank? -%>
+    <%= link_to contact.title, contacts_url(:title => contact.title) %>
+  <%- end -%>
+  <%- if contact.company -%>
+    <%= t("common.at") unless contact.title.blank? %>
+    <%= link_to contact.company.name, contact.company %>
+    <%- if defined?(@contact) -%>
+      (<%= link_to t("common.edit_company"), edit_company_url(@contact.company) %>)
+    <%- end -%>
+  <%- end -%>
+</div>

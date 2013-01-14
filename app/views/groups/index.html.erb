@@ -1,0 +1,17 @@
+<%- sidebar_box do -%>
+  <%= sidebar_module_box :header => 'actions' do %>
+    <%= link_to content_tag(:span, t(".add_new")), new_group_url, :class => :button %>
+  <%- end -%>
+<%- end -%>
+
+<%= content_box do -%>
+  <%- if @groups.any? -%>
+    <div class="group-index-list index-list">
+      <ul>
+        <%= render @groups %>
+      </ul>
+    </div>
+  <%- else -%>
+    <%= render :partial => "welcome" %>
+  <%- end -%>
+<%- end -%>

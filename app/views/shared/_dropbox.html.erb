@@ -1,0 +1,5 @@
+<%= sidebar_module_box(:header => 'header') do -%>
+  <p><%= t(".description_html", :email => mail_to("#{current_account.domain}-#{current_user.dropbox_token}@clientela.com.br")) %></p>
+  <br/>
+  <p><%=link_to t(".read_more"), edit_user_url(current_user) %></p>
+<%- end -%>

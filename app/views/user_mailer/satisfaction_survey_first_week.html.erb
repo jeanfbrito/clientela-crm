@@ -1,0 +1,10 @@
+<%- content_for :message_title do -%>
+O que você está achando do Clientela?
+<%- end -%>
+<p>Olá <%= @user.name %>,</p>
+<p>Quer ajudar a fazer o Clientela melhor?</p>
+<p>Basta responder uma rápida pesquisa, e levaremos um Clientela melhor para você.</p>
+<p style="font-size: 1.5em;text-align:center;">
+<% url = "http://helabs.wufoo.com/forms/pesquisa-de-satisfaaao-do-clientela/def/Field10=#{@account.domain}&Field11=#{@user.name}&Field12=#{@user.email}" %>
+<%= link_to "Responda Aqui!", url, :target => "_blank"%>
+</p>

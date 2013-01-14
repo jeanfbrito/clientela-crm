@@ -1,0 +1,6 @@
+<%= sidebar_module_box(:header => :header) do -%>
+  <ul class="contacts-list">
+    <%= render :partial => "contacts/contact", :collection => resource.contacts -%>
+  </ul>
+  <br style="clear: both;"/>
+<%- end -%>

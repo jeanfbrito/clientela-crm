@@ -1,0 +1,19 @@
+<%= form_for(@user, :builder => Clientela::FormBuilder) do |f| %>
+  <div class="attributes">
+    <%= f.text_field_with_label :name, :wrapper_class => "highlight" %>
+    <%= f.text_field_with_label :email %>
+
+    <div class="attribute">
+      <div class="label">
+        <%= f.label :time_zone %>
+      </div>
+      <div class="field">
+        <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.all.sort %>
+      </div>
+    </div>
+
+    <%= f.password_field_with_label :password, :hint => t(@user.new_record? ? ".new_user_password" : ".user_change_password") %>
+    <%= f.password_field_with_label :password_confirmation %>
+    <%= spinner_submit_with_cancel(f) %>
+  </div>
+<% end %>

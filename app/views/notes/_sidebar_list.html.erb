@@ -1,0 +1,17 @@
+<%- if resource.notes.proposal.any? -%>
+  <%= sidebar_module_box(:header => 'header_proposal') do -%>
+    <% resource.notes.proposal.each do |note| %>
+      <%= link_to note.attachment_file_name, note.attachment.url %>
+    <%- end -%>
+  <%- end -%>
+<%- end -%>
+
+<%- if resource.notes.with_image.any? -%>
+  <%= sidebar_module_box(:header => 'header_images') do -%>
+    <% resource.notes.with_image.each do |note| %>
+      <%= link_to note.attachment.url(:slideshow), :class => "note-image-show-link", :rel => "note-image-group" do %>
+        <%= image_tag note.attachment.url(:thumb) %>
+      <%- end -%>
+    <%- end -%>
+  <%- end -%>
+<%- end -%>

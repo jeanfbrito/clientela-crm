@@ -1,0 +1,7 @@
+<%= sidebar_module_box(:header => :header) do -%>
+  <%- if resource.subscribers.include?(current_user) -%>
+    <p><%= t(".you_re_subscribed") %> <%= link_to(t(".turn_off"), polymorphic_url([resource, :subscription]), :method => :delete) %></p>
+  <%- else -%>
+    <p><%= link_to(t(".turn_on"), polymorphic_url([resource, :subscription]), :method => :post) %> <%= t(".and_receive") %></p>
+  <%- end -%>
+<%- end -%>

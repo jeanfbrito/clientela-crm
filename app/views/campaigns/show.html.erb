@@ -1,0 +1,3 @@
+<%= sidebar_box do -%>
+  <%= render :partial => "tasks/sidebar_list", :locals => { :tasks => @campaign.tasks.assigned_to(current_user) } %>
+<% end %>

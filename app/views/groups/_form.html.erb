@@ -1,0 +1,17 @@
+<%= form_for @group, :builder => Clientela::FormBuilder do |f| %>
+  <div class="attributes">
+    <%= f.text_field_with_label :name, :wrapper_class => "highlight" %>
+
+    <%= label_tag "Quais são os usários desse grupo?" %>
+    <br/>
+    <br/>
+    <%- User.active.each do |user| -%>
+      <div>
+        <%= check_box_tag "group[user_ids][]", user.id, @group.users.include?(user), :id => "group_user_ids_#{user.id}" %>
+        <%= label_tag "group_user_ids_#{user.id}", user.name %>
+      </div>
+    <%- end -%>
+
+    <%= spinner_submit_with_cancel(f) %>
+  </div>
+<%- end -%>
